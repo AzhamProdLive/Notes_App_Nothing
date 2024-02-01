@@ -19,7 +19,7 @@ class MainScreen extends StatelessWidget {
       appBar: MainAppBar(
         onSearchPress: () => Navigator.pushNamed(context, '/search'),
       ),
-      body: Padding(padding: const EdgeInsets.only(top: 40), child:
+      body: Padding(padding: const EdgeInsets.only(top: 30), child:
       StreamBuilder<NotesState>(
         initialData: cubit.state,
         stream: cubit.stream,
@@ -44,7 +44,7 @@ class MainScreen extends StatelessWidget {
           backgroundColor: CustomColors.red,
 
           label: const Text(
-            'Add Note', style: TextStyle(fontSize: 20, color: Colors.white),),
+            'Add Note', style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: "Nunito-Bold"),),
           icon: const Icon(IconData(0xe900, fontFamily: "NothingIcon"), size: 26, color: Colors.white,),
         ),
       ),

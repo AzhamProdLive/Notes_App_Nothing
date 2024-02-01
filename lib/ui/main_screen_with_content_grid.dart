@@ -79,13 +79,13 @@ class MainScreenWithContentGridView extends StatelessWidget {
                     ),
                     child: Center( child: ListTile( title:  Text(
                       notes[index].title,
-                      style: const TextStyle(fontSize: 25, color: Colors.white, fontFamily: "Nothing"),),
+                      style:  TextStyle(fontSize: 25, color: titleColor(Color(notes[index].color)), fontFamily: "Nothing"),),
                       subtitle:
                       Text(
                         notes[index].content,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
-                        style: const TextStyle(fontSize: 16, color: Colors.white54),)
+                        style: TextStyle(fontSize: 16, color: textColor(Color(notes[index].color))),)
                     ),
                     ),
                   ),
@@ -94,5 +94,21 @@ class MainScreenWithContentGridView extends StatelessWidget {
             })
           )
     );
+  }
+}
+
+Color textColor(Color indexColor ) {
+  if (indexColor == Colors.white){
+    return Colors.black54;
+  }else{
+    return Colors.white54;
+  }
+}
+
+Color titleColor(Color indexColor ) {
+  if (indexColor == Colors.white){
+    return Colors.black;
+  }else{
+    return Colors.white;
   }
 }

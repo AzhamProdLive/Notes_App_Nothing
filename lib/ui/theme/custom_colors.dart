@@ -14,6 +14,6 @@ class CustomColors {
     Colors.blue,
     Colors.teal,
     Colors.blueGrey,
-    Colors.pink
+    Colors.white
   ];
 }

@@ -153,10 +153,19 @@ class NoteAddScreen extends StatelessWidget {
 
   void saveNote(
       NotesCubit cubit, NotesColorCubit colorCubit, BuildContext context) {
-    if (_titleController.text.isNotEmpty && _bodyController.text.isNotEmpty) {
-      cubit.addNote(_titleController.text, _bodyController.text,
-          colorCubit.state.noteColor);
-      Navigator.pop(context);
+    while (true) {
+      if (_titleController.text.isNotEmpty) {
+        if (_bodyController.text.isNotEmpty) {
+          cubit.addNote(_titleController.text, _bodyController.text,
+              colorCubit.state.noteColor);
+          Navigator.pop(context);
+          break;
+        }else{
+          _bodyController.text = "Nothing";
+        }
+      }else{
+        _titleController.text = "Title";
+      }
     }
   }
 }
