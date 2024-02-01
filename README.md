@@ -4,7 +4,7 @@
 
 A simple notes app. Uses Drift to store your notes. Assign colors for your notes. Search your notes easily.
 
-Download APK: https://github.com/AzhamProdLive/Notes_App_Nothing/blob/9e8913225fe6c1988aa253b51fa1ae25613cf7ad/Notes%20(1).apk
+✅Download APK: https://github.com/AzhamProdLive/Notes_App_Nothing/blob/9e8913225fe6c1988aa253b51fa1ae25613cf7ad/Notes%20(1).apk
 
 ## Features
  - Supports Android
@@ -14,7 +14,8 @@ Download APK: https://github.com/AzhamProdLive/Notes_App_Nothing/blob/9e8913225f
  - Smooth Nothing themed UI 
 
 ## To-do
- - [ ] GridView 
+ - [ ] GridView
+ - [ ] Google account support
  - [ ] pin 📍 nodes
  - [ ] Archive notes
 
