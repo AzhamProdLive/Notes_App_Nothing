@@ -17,4 +17,29 @@ Download APK: https://github.com/AzhamProdLive/Notes_App_Nothing/blob/9e8913225f
  - [ ] GridView 
  - [ ] pin 📍 nodes
  - [ ] Archive notes
+
+##Getting Started
+1. Clone the repository
+   
+   ```
+   git clone https://github.com/AzhamProdLive/Notes_App_Nothing/
+   ```
+   
+2. Navigate to the project directory
+
+   ```
+   cd Notes_APP
+   ```
+   
+3. Install dependencies
+
+   ```
+   flutter pub get
+   ```
+
+4. Run the app
+   ```
+   flutter run
+   ```
+---
  
