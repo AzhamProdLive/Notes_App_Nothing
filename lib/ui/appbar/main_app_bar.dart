@@ -1,4 +1,4 @@
-import 'package:app_client/constants/custom_colors.dart';
+import 'package:app_client/ui/theme/custom_colors.dart';
 import 'package:flutter/material.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -11,7 +11,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(left: 25, right: 20, top: 15),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
