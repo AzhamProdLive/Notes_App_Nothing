@@ -22,7 +22,7 @@ Download APK: https://github.com/AzhamProdLive/Notes_App_Nothing/blob/9e8913225f
 1. Clone the repository
    
    ```
-   git clone https://github.com/AzhamProdLive/Notes_App_Nothing/
+   git clone https://github.com/AzhamProdLive/Notes_App_Nothing.git
    ```
    
 2. Navigate to the project directory
