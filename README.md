@@ -18,7 +18,7 @@ Download APK: https://github.com/AzhamProdLive/Notes_App_Nothing/blob/9e8913225f
  - [ ] pin 📍 nodes
  - [ ] Archive notes
 
-##Getting Started
+## Getting Started
 1. Clone the repository
    
    ```
