@@ -5,6 +5,8 @@ on:
   # 2
   push:
     branches: [ "TestsBuildsWorkflow(temp)" ]
+    paths-ignore:
+      - '**/README.md'
   pull_request:
     branches: [ "TestsBuildsWorkflow(temp)" ]
 
@@ -17,7 +19,8 @@ jobs:
   build:
     # 6
     runs-on: ubuntu-latest
-
+    env:
+      FLUTTER_VERSION: "3.19"
     # 7
     steps:
       # 8
@@ -31,8 +34,8 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           # 11
-          flutter-version: "3.0.0"
-          channel: 'stable'
+          flutter-version: $
+          channel: 'beta'
       # 12
       - name: Get dependencies
         run: flutter pub get
