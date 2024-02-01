@@ -5,14 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a7f8a47-ccbf-4cc9-81f4-741fb6714ff1" name="Changes" comment="I have made a Nothing Stilled version of the note app">
-      <change afterPath="$PROJECT_DIR$/assets/fonts/NotoSansMono-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/fonts/icomoon.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/NotoSansMono-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/NotoSansMono-Light.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/notes_app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/notes_app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/blocs/notes_color_cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/blocs/notes_color_cubit.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/constants/custom_colors.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/theme/custom_colors.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/add_note_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/add_note_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/appbar/add_note_app_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/appbar/add_note_app_bar.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/appbar/main_app_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/appbar/main_app_bar.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/appbar/show_note_app_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/appbar/show_note_app_bar.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/main_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/main_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/main_screen_with_content.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/main_screen_with_content.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/main_screen_with_content_grid.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/main_screen_with_content_grid.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/search_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/search_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/show_note_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/show_note_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/theme/app_theme.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/theme/app_theme.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +36,11 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -32,6 +49,29 @@
 }</component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="Beta-Test" />
+                    <option name="lastUsedInstant" value="1706812205" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1706812204" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
@@ -45,26 +85,29 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2bgHNOdansNBZqX9KR2HlsVcM9e" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/elias/StudioProjects/flutter-codelabs/homescreen_codelab/step_03&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "io.flutter.reload.alreadyRun": "true",
+    "last_opened_file_path": "C:/Users/elias/StudioProjects/flutter-codelabs/homescreen_codelab/step_03",
+    "settings.editor.selected.configurable": "configurable.group.appearance",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\elias\StudioProjects\Notes_App_Nothing\assets\fonts" />
+      <recent name="C:\Users\elias\StudioProjects\Notes_App_Nothing\lib\ui\theme" />
       <recent name="C:\Users\elias\StudioProjects\notes_app\assets\fonts" />
       <recent name="C:\Users\elias\StudioProjects\notes_app\assets\images" />
     </key>
@@ -125,7 +168,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/Beta-Test" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

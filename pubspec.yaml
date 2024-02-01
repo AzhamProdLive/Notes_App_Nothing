@@ -45,6 +45,10 @@ flutter:
     - family: Nunito
       fonts:
         - asset: assets/fonts/NotoSansMono-Regular.ttf
+        - asset: assets/fonts/NotoSansMono-Bold.ttf
+        - asset: assets/fonts/NotoSansMono-Bold.ttf
+        - asset: assets/fonts/NotoSansMono-Light.ttf
+
     - family: Nothing
       fonts:
         - asset: assets/fonts/nothing-font-5x7.ttf

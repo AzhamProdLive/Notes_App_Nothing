@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../blocs/notes_color_cubit.dart';
 import '../blocs/notes_cubit.dart';
-import '../constants/custom_colors.dart';
+import 'theme/custom_colors.dart';
 import '../database/tables.dart';
 import 'appbar/show_note_app_bar.dart';
 
@@ -84,7 +84,7 @@ class ShowNoteScreen extends StatelessWidget {
                         keyboardType: TextInputType.multiline,
                         maxLines: null,
                         decoration: const InputDecoration(
-                          fillColor: CustomColors.darkGrey,
+                          fillColor: CustomColors.backgroundColor,
                         ),
                         style:
                             const TextStyle(color: Colors.white, fontSize: 38, fontFamily: "Nothing"),
@@ -96,7 +96,7 @@ class ShowNoteScreen extends StatelessWidget {
                         keyboardType: TextInputType.multiline,
                         textCapitalization: TextCapitalization.sentences,
                         decoration: const InputDecoration(
-                          fillColor: CustomColors.darkGrey,
+                          fillColor: CustomColors.backgroundColor,
                         ),
                         style:
                             const TextStyle(color: Colors.white, fontSize: 24),

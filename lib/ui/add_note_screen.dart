@@ -1,7 +1,7 @@
 import 'package:app_client/blocs/notes_color_cubit.dart';
 import 'package:app_client/blocs/notes_color_state.dart';
 import 'package:app_client/blocs/notes_cubit.dart';
-import 'package:app_client/constants/custom_colors.dart';
+import 'package:app_client/ui/theme/custom_colors.dart';
 import 'package:app_client/ui/appbar/add_note_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -82,7 +82,7 @@ class NoteAddScreen extends StatelessWidget {
                       maxLines: null,
                       decoration: const InputDecoration(
                         hintText: 'Title',
-                        fillColor: CustomColors.darkGrey,
+                        fillColor: CustomColors.backgroundColor,
                       ),
                       style: const TextStyle(color: Colors.white, fontSize: 38, fontFamily: "Nothing"),
                     ),
@@ -94,7 +94,7 @@ class NoteAddScreen extends StatelessWidget {
                       textCapitalization: TextCapitalization.sentences,
                       decoration: const InputDecoration(
                         hintText: 'Type something...',
-                        fillColor: CustomColors.darkGrey,
+                        fillColor: CustomColors.backgroundColor,
                       ),
                       style: const TextStyle(color: Colors.white, fontSize: 24),
                     ),

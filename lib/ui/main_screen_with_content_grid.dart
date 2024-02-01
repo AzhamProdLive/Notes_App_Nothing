@@ -2,7 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../blocs/notes_cubit.dart';
-import '../constants/custom_colors.dart';
+import 'theme/custom_colors.dart';
 import '../database/tables.dart';
 
 class MainScreenWithContentGridView extends StatelessWidget {
@@ -28,6 +28,7 @@ class MainScreenWithContentGridView extends StatelessWidget {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
+                        backgroundColor: CustomColors.lightGrey,
                         content: const Text(
                           "Are you sure you wish to delete this note?",
                           style: TextStyle(fontSize: 19),

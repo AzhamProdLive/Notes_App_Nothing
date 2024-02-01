@@ -1,4 +1,4 @@
-import 'package:app_client/constants/custom_colors.dart';
+import 'package:app_client/ui/theme/custom_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -13,7 +13,7 @@ class AppTheme {
       dialogTheme: const DialogTheme(
         titleTextStyle: TextStyle(color: Colors.white),
         contentTextStyle: TextStyle(color: Colors.white),
-        backgroundColor: CustomColors.darkGrey,
+        backgroundColor: CustomColors.backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(16.0),
@@ -21,5 +21,5 @@ class AppTheme {
         ),
       ),
       fontFamily: 'Nunito',
-      scaffoldBackgroundColor: CustomColors.darkGrey, colorScheme: ColorScheme.fromSeed(seedColor: Colors.black, background: Colors.black));
+      scaffoldBackgroundColor: CustomColors.backgroundColor, colorScheme: ColorScheme.fromSeed(seedColor: Colors.black, background: Colors.black));
 }

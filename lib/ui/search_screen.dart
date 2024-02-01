@@ -1,6 +1,6 @@
 import 'package:app_client/blocs/notes_search_state.dart';
 import 'package:app_client/ui/appbar/search_app_bar.dart';
-import 'package:app_client/ui/main_screen_with_content.dart';
+import 'package:app_client/ui/main_screen_with_content_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,7 +35,7 @@ class NotesNotFoundScreen extends StatelessWidget {
           stream: searchCubit.stream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return MainScreenWithContent(notes: snapshot.data!.currentNotes);
+              return MainScreenWithContentGridView(notes: snapshot.data!.currentNotes);
             } else {
               return const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
