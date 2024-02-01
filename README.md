@@ -14,7 +14,6 @@ A simple notes app. Uses Drift to store your notes. Assign colors for your notes
  - Smooth Nothing themed UI 
 
 ## To-do
- - [ ] GridView
  - [ ] Google account support
  - [ ] pin 📍 nodes
  - [ ] Archive notes
