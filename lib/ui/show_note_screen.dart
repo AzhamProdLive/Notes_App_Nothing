@@ -6,12 +6,14 @@ import '../blocs/notes_cubit.dart';
 import 'theme/custom_colors.dart';
 import '../database/tables.dart';
 import 'appbar/show_note_app_bar.dart';
+import 'package:flutter_quill/flutter_quill.dart';
+import 'dart:convert';
 
 class ShowNoteScreen extends StatelessWidget {
   ShowNoteScreen({super.key});
 
   final _titleController = TextEditingController();
-  final _bodyController = TextEditingController();
+  final _bodyController = QuillController.basic();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class ShowNoteScreen extends StatelessWidget {
 
     colorCubit.changeColor(note.color);
     _titleController.text = note.title;
-    _bodyController.text = note.content;
+    _bodyController.document = Document.fromJson(json.decode(note.content));
 
     return StreamBuilder<NotesColorState>(
         stream: colorCubit.stream,
@@ -90,16 +92,34 @@ class ShowNoteScreen extends StatelessWidget {
                             const TextStyle(color: Colors.white, fontSize: 38, fontFamily: "Nothing"),
                       ),
                       const SizedBox(height: 14),
-                      TextField(
-                        controller: _bodyController,
-                        maxLines: null,
-                        keyboardType: TextInputType.multiline,
-                        textCapitalization: TextCapitalization.sentences,
-                        decoration: const InputDecoration(
-                          fillColor: CustomColors.backgroundColor,
+                      QuillToolbar.simple(
+                        configurations: QuillSimpleToolbarConfigurations(
+                          controller: _bodyController,
+                          headerStyleType: HeaderStyleType.buttons,
+                          showBackgroundColorButton: false,
+                          showColorButton: false,
+                          showDividers: false,
+                          showFontFamily: false,
+                          showFontSize: false,
+                          showCodeBlock: false,
+                          sectionDividerColor: Colors.white,
+                          buttonOptions: QuillSimpleToolbarButtonOptions(base: QuillToolbarBaseButtonOptions( iconTheme: QuillIconTheme(iconButtonUnselectedData: IconButtonData(color: Colors.white, )), ),),
+                          sharedConfigurations: const QuillSharedConfigurations(
+                            dialogBarrierColor: Colors.white,
+                            locale: Locale('de'),
+                          ),
                         ),
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 24),
+                      ),
+                      QuillEditor.basic(
+                        configurations: QuillEditorConfigurations(
+                          controller: _bodyController,
+                          readOnly: false,
+                          autoFocus: true,
+                          placeholder: "Nothing",
+                          sharedConfigurations: const QuillSharedConfigurations(
+                            locale: Locale('de'),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -161,7 +181,7 @@ class ShowNoteScreen extends StatelessWidget {
     cubit.updateNote(Note(
         id: note.id,
         title: _titleController.text,
-        content: _bodyController.text,
+        content: jsonEncode(_bodyController.document.toDelta().toJson(),),
         color: colorCubit.state.noteColor));
     Navigator.pop(context);
     return false;

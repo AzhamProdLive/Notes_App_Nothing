@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../blocs/notes_cubit.dart';
 import 'theme/custom_colors.dart';
 import '../database/tables.dart';
+import 'package:flutter_quill/flutter_quill.dart';
+import 'dart:convert';
 
 class MainScreenWithContentGridView extends StatelessWidget {
   const MainScreenWithContentGridView({
@@ -84,7 +86,7 @@ class MainScreenWithContentGridView extends StatelessWidget {
                       style:  TextStyle(fontSize: 25, color: titleColor(Color(notes[index].color)), fontFamily: "Nothing"),),
                       subtitle:
                       Text(
-                        notes[index].content,
+                        Document.fromJson(json.decode(notes[index].content)).toPlainText(),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: TextStyle(fontSize: 16, color: textColor(Color(notes[index].color))),)
