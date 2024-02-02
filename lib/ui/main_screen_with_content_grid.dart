@@ -71,7 +71,7 @@ class MainScreenWithContentGridView extends StatelessWidget {
                       arguments: {'note': notes[index]}),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(10.0),
                     decoration: BoxDecoration(
                         color: Color(notes[index].color),
                       border: Border.all(width: 2),
@@ -79,6 +79,8 @@ class MainScreenWithContentGridView extends StatelessWidget {
                     ),
                     child: Center( child: ListTile( title:  Text(
                       notes[index].title,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
                       style:  TextStyle(fontSize: 25, color: titleColor(Color(notes[index].color)), fontFamily: "Nothing"),),
                       subtitle:
                       Text(
