@@ -1,6 +1,5 @@
+***/!\ THIS BRANCH IS NOT A STABLE BRANCH FOR BUILDING THE APK, THIS IS USED FOR DEVELOPPEMENT PURPOSE, DO NOT CLONE OR FORK THIS BRANCH IF YOU WISH TO MODIFY THE SOFTWARE, NO SUPPORT WILL BE GIVEN IF YOU DO /!\*** 
 # Notes App for Nothing 
-
-<img width="1248" alt="Снимок экрана 2022-10-18 в 19 09 56" src="https://raw.githubusercontent.com/AzhamProdLive/Notes_App_Nothing/main/Screenshot_20240131-224841.png">
 
 A simple notes app. Uses Drift to store your notes. Assign colors for your notes. Search your notes easily.
 
