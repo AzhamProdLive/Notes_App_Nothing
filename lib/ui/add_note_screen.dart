@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app_client/blocs/notes_color_cubit.dart';
 import 'package:app_client/blocs/notes_color_state.dart';
 import 'package:app_client/blocs/notes_cubit.dart';
@@ -5,12 +7,15 @@ import 'package:app_client/ui/theme/custom_colors.dart';
 import 'package:app_client/ui/appbar/add_note_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
+
 
 class NoteAddScreen extends StatelessWidget {
   NoteAddScreen({super.key});
 
   final _titleController = TextEditingController();
-  final _bodyController = TextEditingController();
+  final _bodyController = QuillController.basic();
 
   @override
   Widget build(BuildContext context) {
@@ -87,18 +92,54 @@ class NoteAddScreen extends StatelessWidget {
                       style: const TextStyle(color: Colors.white, fontSize: 38, fontFamily: "Nothing"),
                     ),
                     const SizedBox(height: 14),
-                    TextField(
-                      controller: _bodyController,
-                      maxLines: null,
-                      keyboardType: TextInputType.multiline,
-                      textCapitalization: TextCapitalization.sentences,
-                      decoration: const InputDecoration(
-                        hintText: 'Type something...',
-                        fillColor: CustomColors.backgroundColor,
+                    QuillEditor.basic(
+                      configurations: QuillEditorConfigurations(
+                        controller: _bodyController,
+                        customStyles: const DefaultStyles(
+                            h1: DefaultTextBlockStyle(TextStyle(color: Colors.white, fontSize: 37, ), VerticalSpacing(10, 10,), VerticalSpacing(0, 0,), null),
+                            paragraph: DefaultTextBlockStyle(TextStyle(color: Colors.white, fontSize: 21, fontFamily: "Nunito"), VerticalSpacing(0, 0,), VerticalSpacing(0, 0), null),
+                            h2: DefaultTextBlockStyle(TextStyle(color: Colors.white, fontSize: 45, fontFamily: "Nothing"), VerticalSpacing(10, 10,), VerticalSpacing(0, 0), null),
+                            h3: DefaultTextBlockStyle(TextStyle(color: Colors.white60, fontSize: 20), VerticalSpacing(0, 0,), VerticalSpacing(0, 0), null)),
+                        readOnly: false,
+                        autoFocus: true,
+                        placeholder: "Nothing",
+                        sharedConfigurations: const QuillSharedConfigurations(
+                          locale: Locale('de'),
+                        ),
                       ),
-                      style: const TextStyle(color: Colors.white, fontSize: 24),
                     ),
                   ],
+                ),
+              ),
+            ),
+            floatingActionButton: QuillToolbar.simple(
+              configurations: QuillSimpleToolbarConfigurations(
+                controller: _bodyController,
+                color: Colors.black54,
+                multiRowsDisplay: false,
+                headerStyleType: HeaderStyleType.buttons,
+                showBackgroundColorButton: false,
+                showColorButton: false,
+                showDividers: false,
+                showFontFamily: false,
+                showFontSize: false,
+                showCodeBlock: false,
+                showAlignmentButtons: true,
+                showClearFormat: false,
+                showIndent: false,
+                showInlineCode: false,
+                showQuote: false,
+                showSearchButton: false,
+                showSmallButton: false,
+                showSuperscript: false,
+                showDirection: false,
+                showJustifyAlignment: true,
+                showSubscript: false,
+                sectionDividerColor: Colors.white,
+                buttonOptions: QuillSimpleToolbarButtonOptions(base: QuillToolbarBaseButtonOptions( iconTheme: QuillIconTheme(iconButtonUnselectedData: IconButtonData(color: Colors.white, )), ),),
+                sharedConfigurations: const QuillSharedConfigurations(
+                  dialogBarrierColor: Colors.white,
+                  locale: Locale('de'),
                 ),
               ),
             ),
@@ -155,14 +196,10 @@ class NoteAddScreen extends StatelessWidget {
       NotesCubit cubit, NotesColorCubit colorCubit, BuildContext context) {
     while (true) {
       if (_titleController.text.isNotEmpty) {
-        if (_bodyController.text.isNotEmpty) {
-          cubit.addNote(_titleController.text, _bodyController.text,
+          cubit.addNote(_titleController.text, jsonEncode(_bodyController.document.toDelta().toJson()),
               colorCubit.state.noteColor);
           Navigator.pop(context);
           break;
-        }else{
-          _bodyController.text = "Nothing";
-        }
       }else{
         _titleController.text = "Title";
       }

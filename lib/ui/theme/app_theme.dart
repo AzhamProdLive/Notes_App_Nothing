@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   static final dark = ThemeData(
-    canvasColor: Colors.yellow,
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+    canvasColor: Colors.white,
       inputDecorationTheme: const InputDecorationTheme(
         filled: true,
         fillColor: CustomColors.lightGrey,

@@ -11,7 +11,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -19,7 +19,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           'NOTES',
           style: TextStyle(
             fontFamily: "Nothing",
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.normal,
               fontSize: 44,
               color: Colors.white),
         ),
@@ -31,7 +31,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                     child: const Icon(
                       IconData(0xe90f, fontFamily: "NothingIcon"),
                       color: Colors.white,
-                      size: 35,
+                      size: 33,
                     ),
                   ),
                 const SizedBox(width: 15),
