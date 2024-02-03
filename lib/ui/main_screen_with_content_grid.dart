@@ -73,13 +73,25 @@ class MainScreenWithContentGridView extends StatelessWidget {
                       arguments: {'note': notes[index]}),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    padding: const EdgeInsets.all(10.0),
                     decoration: BoxDecoration(
                         color: Color(notes[index].color),
                       border: Border.all(width: 2),
-                        borderRadius: BorderRadius.all(Radius.circular(20))
+                        borderRadius: const BorderRadius.all(Radius.circular(20))
                     ),
-                    child: Center( child: ListTile( title:  Text(
+                    child: Container(
+                      padding: const EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: <Color>[
+                            Colors.black.withAlpha(0),
+                            Colors.black12,
+                            Colors.black87,
+                          ],
+                        ),
+                      ),
+                      child: Center( child: ListTile( title:  Text(
                       notes[index].title,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
@@ -93,7 +105,7 @@ class MainScreenWithContentGridView extends StatelessWidget {
                     ),
                     ),
                   ),
-                ),
+                ), )
               );
             })
           )
@@ -102,7 +114,7 @@ class MainScreenWithContentGridView extends StatelessWidget {
 }
 
 Color textColor(Color indexColor ) {
-  if (indexColor == Colors.white){
+  if (indexColor == const Color.fromRGBO(239, 239, 239, 1.0)){
     return Colors.black54;
   }else{
     return Colors.white54;
@@ -110,7 +122,7 @@ Color textColor(Color indexColor ) {
 }
 
 Color titleColor(Color indexColor ) {
-  if (indexColor == Colors.white){
+  if (indexColor == const Color.fromRGBO(239, 239, 239, 1.0)){
     return Colors.black;
   }else{
     return Colors.white;

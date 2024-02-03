@@ -138,7 +138,7 @@ class ShowNoteScreen extends StatelessWidget {
                 showSubscript: false,
                 toolbarSize: 35,
                 sectionDividerColor: Colors.white,
-                buttonOptions: QuillSimpleToolbarButtonOptions(base: QuillToolbarBaseButtonOptions( iconTheme: QuillIconTheme(iconButtonUnselectedData: IconButtonData(color: Colors.white, )), ),),
+                buttonOptions: const QuillSimpleToolbarButtonOptions(base: QuillToolbarBaseButtonOptions( iconTheme: QuillIconTheme(iconButtonUnselectedData: IconButtonData(color: Colors.white, )), ),),
                 sharedConfigurations: const QuillSharedConfigurations(
                   dialogBarrierColor: Colors.white,
                   locale: Locale('de'),

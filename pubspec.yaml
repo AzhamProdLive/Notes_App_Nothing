@@ -39,9 +39,9 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/no_data.png
     - assets/images/no_notes.png
-  
+    - assets/images/No Notes - 1.png
+
   fonts:
     - family: Nunito
       fonts:
