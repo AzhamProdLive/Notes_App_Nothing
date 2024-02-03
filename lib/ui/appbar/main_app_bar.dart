@@ -19,7 +19,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           'NOTES',
           style: TextStyle(
             fontFamily: "Nothing",
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.normal,
               fontSize: 44,
               color: Colors.white),
         ),
@@ -31,7 +31,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                     child: const Icon(
                       IconData(0xe90f, fontFamily: "NothingIcon"),
                       color: Colors.white,
-                      size: 35,
+                      size: 33,
                     ),
                   ),
                 const SizedBox(width: 15),
