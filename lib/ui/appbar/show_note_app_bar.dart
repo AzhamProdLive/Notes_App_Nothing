@@ -1,4 +1,4 @@
-import 'package:app_client/constants/custom_colors.dart';
+import 'package:app_client/ui/theme/custom_colors.dart';
 import 'package:flutter/material.dart';
 
 class ShowNoteAppBar extends StatelessWidget implements PreferredSizeWidget {

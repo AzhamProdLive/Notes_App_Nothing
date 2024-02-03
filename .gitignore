@@ -10,6 +10,7 @@
 .svn/
 migrate_working_dir/
 
+android/local.properties
 # IntelliJ related
 *.iml
 *.ipr

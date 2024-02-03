@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none' 
 
-version: 1.0.0+1
+version: 1.0.1+1
 
 environment:
   sdk: ">=2.17.5 <3.0.0"
@@ -19,6 +19,7 @@ dependencies:
   bloc: ^8.0.0
 
   cupertino_icons: ^1.0.2
+  flutter_quill: ^9.2.10
 
 dev_dependencies:
   flutter_launcher_icons: "^0.9.2"
@@ -38,13 +39,17 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/no_data.png
     - assets/images/no_notes.png
-  
+    - assets/images/No Notes - 1.png
+
   fonts:
     - family: Nunito
       fonts:
         - asset: assets/fonts/NotoSansMono-Regular.ttf
+        - asset: assets/fonts/NotoSansMono-Bold.ttf
+        - asset: assets/fonts/NotoSansMono-Bold.ttf
+        - asset: assets/fonts/NotoSansMono-Light.ttf
+
     - family: Nothing
       fonts:
         - asset: assets/fonts/nothing-font-5x7.ttf

@@ -1,5 +1,5 @@
 import 'package:app_client/blocs/notes_color_state.dart';
-import 'package:app_client/constants/custom_colors.dart';
+import 'package:app_client/ui/theme/custom_colors.dart';
 import 'package:bloc/bloc.dart';
 
 class NotesColorCubit extends Cubit<NotesColorState> {
