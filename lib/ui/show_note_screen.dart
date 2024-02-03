@@ -159,7 +159,7 @@ class ShowNoteScreen extends StatelessWidget {
           return AlertDialog(
             content: SizedBox(
               width: 210,
-              height: 110,
+              height: 165,
               child: GridView.builder(
                 itemCount: CustomColors.colorsData.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
