@@ -92,17 +92,14 @@ class NoteAddScreen extends StatelessWidget {
                       style: const TextStyle(color: Colors.white, fontSize: 38, fontFamily: "Nothing"),
                     ),
                     const SizedBox(height: 14),
-                    QuillToolbar.simple(
-                      configurations: QuillSimpleToolbarConfigurations(
-                        controller: _bodyController,
-                        sharedConfigurations: const QuillSharedConfigurations(
-                          locale: Locale('de'),
-                        ),
-                      ),
-                    ),
                     QuillEditor.basic(
                       configurations: QuillEditorConfigurations(
                         controller: _bodyController,
+                        customStyles: const DefaultStyles(
+                            h1: DefaultTextBlockStyle(TextStyle(color: Colors.white, fontSize: 37, ), VerticalSpacing(10, 10,), VerticalSpacing(0, 0,), null),
+                            paragraph: DefaultTextBlockStyle(TextStyle(color: Colors.white, fontSize: 21, fontFamily: "Nunito"), VerticalSpacing(0, 0,), VerticalSpacing(0, 0), null),
+                            h2: DefaultTextBlockStyle(TextStyle(color: Colors.white, fontSize: 45, fontFamily: "Nothing"), VerticalSpacing(10, 10,), VerticalSpacing(0, 0), null),
+                            h3: DefaultTextBlockStyle(TextStyle(color: Colors.white60, fontSize: 20), VerticalSpacing(0, 0,), VerticalSpacing(0, 0), null)),
                         readOnly: false,
                         autoFocus: true,
                         placeholder: "Nothing",
@@ -112,6 +109,28 @@ class NoteAddScreen extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+              ),
+            ),
+            floatingActionButton: QuillToolbar.simple(
+              configurations: QuillSimpleToolbarConfigurations(
+                controller: _bodyController,
+                color: Colors.black54,
+                multiRowsDisplay: false,
+                headerStyleType: HeaderStyleType.buttons,
+                showBackgroundColorButton: false,
+                showColorButton: false,
+                showDividers: false,
+                showFontFamily: false,
+                showFontSize: false,
+                showCodeBlock: false,
+                showAlignmentButtons: true,
+                showClearFormat: false,
+                sectionDividerColor: Colors.white,
+                buttonOptions: QuillSimpleToolbarButtonOptions(base: QuillToolbarBaseButtonOptions( iconTheme: QuillIconTheme(iconButtonUnselectedData: IconButtonData(color: Colors.white, )), ),),
+                sharedConfigurations: const QuillSharedConfigurations(
+                  dialogBarrierColor: Colors.white,
+                  locale: Locale('de'),
                 ),
               ),
             ),
