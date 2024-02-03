@@ -4,11 +4,11 @@ name: Android Release
 on:
   # 2
   push:
-    branches: [ "TestsBuildsWorkflow(temp)" ]
+    branches: [ "main" ]
     paths-ignore:
       - '**/README.md'
   pull_request:
-    branches: [ "TestsBuildsWorkflow(temp)" ]
+    branches: [ "main" ]
 
   # 3
   workflow_dispatch:

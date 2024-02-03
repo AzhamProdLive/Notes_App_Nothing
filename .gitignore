@@ -15,6 +15,7 @@ migrate_working_dir/
 *.ipr
 *.iws
 .idea/
+.idea/workspace.xml
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
@@ -31,6 +32,9 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+/android/notes_app.iml
+/android/local.properties
+
 
 # Web related
 lib/generated_plugin_registrant.dart
