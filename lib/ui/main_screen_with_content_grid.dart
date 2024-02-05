@@ -23,8 +23,12 @@ class MainScreenWithContentGridView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child:
           GridView.count(crossAxisCount: 2,
+
             children: List.generate(notes.length, (index) {
-             return Dismissible(
+              int row = index ~/ 2;
+              double dx = -30.0 * (row + 1);
+             return Container( transform: Matrix4.translationValues(0, dx, 0),
+                 child:  Dismissible(
                 confirmDismiss: (DismissDirection direction) async {
                   return await showDialog(
                     context: context,
@@ -75,7 +79,7 @@ class MainScreenWithContentGridView extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                         color: Color(notes[index].color),
-                      border: Border.all(width: 2),
+                      border: Border.all(width: 2, ),
                         borderRadius: const BorderRadius.all(Radius.circular(20))
                     ),
                     child: Container(
@@ -106,7 +110,7 @@ class MainScreenWithContentGridView extends StatelessWidget {
                     ),
                   ),
                 ), )
-              );
+              ));
             })
           )
     );

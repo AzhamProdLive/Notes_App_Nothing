@@ -136,7 +136,7 @@ class NoteAddScreen extends StatelessWidget {
                 showJustifyAlignment: true,
                 showSubscript: false,
                 sectionDividerColor: Colors.white,
-                buttonOptions: QuillSimpleToolbarButtonOptions(base: QuillToolbarBaseButtonOptions( iconTheme: QuillIconTheme(iconButtonUnselectedData: IconButtonData(color: Colors.white, )), ),),
+                buttonOptions: const QuillSimpleToolbarButtonOptions(base: QuillToolbarBaseButtonOptions( iconTheme: QuillIconTheme(iconButtonUnselectedData: IconButtonData(color: Colors.white, )), ),),
                 sharedConfigurations: const QuillSharedConfigurations(
                   dialogBarrierColor: Colors.white,
                   locale: Locale('de'),
@@ -157,7 +157,7 @@ class NoteAddScreen extends StatelessWidget {
             return AlertDialog(
               content: SizedBox(
                 width: 210,
-                height: 110,
+                height: 165,
                 child: GridView.builder(
                   itemCount: CustomColors.colorsData.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

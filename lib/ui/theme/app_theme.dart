@@ -1,8 +1,10 @@
 import 'package:app_client/ui/theme/custom_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AppTheme {
   static final dark = ThemeData(
+    primaryColor: CustomColors.deepRed,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     canvasColor: Colors.white,
       inputDecorationTheme: const InputDecorationTheme(
