@@ -21,14 +21,38 @@ class _TaskListScreenState extends State<TaskListScreen> {
     _loadTasks();
   }
 
+  Widget addTaskButton(BuildContext context,){
+    return FloatingActionButton(
+      backgroundColor: CustomColors.red,
+      onPressed: () {
+       _addTask(context);
+      },
+      tooltip: 'Add Task',
+      child: Icon(Icons.add),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
         itemCount: tasks.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(tasks[index].task),
-          );
+          return InkWell(
+              onTap: () => {},
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(width: 2, ),
+                  borderRadius: const BorderRadius.all(Radius.circular(20))
+                ),
+                child: Container(
+                  padding: const EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                  ),
+                  child: ListTile(
+                      title: Text(tasks[index].task),
+          ),),),);
         },
       );/*
       floatingActionButton: FloatingActionButton(
@@ -96,6 +120,8 @@ class _TaskListScreenState extends State<TaskListScreen> {
 
     await database.insert('tasks', {'task': task});
   }
+
+
 }
 
 class Task {
@@ -103,4 +129,9 @@ class Task {
   final String task;
 
   Task({required this.id, required this.task});
+}
+
+Widget addTaskButton(BuildContext context) {
+  _TaskListScreenState taskListScreenState = _TaskListScreenState();
+  return  taskListScreenState.addTaskButton(context);
 }

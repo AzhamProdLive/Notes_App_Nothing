@@ -1,8 +1,10 @@
 import 'package:app_client/blocs/notes_state.dart';
+import 'package:app_client/database/tables.dart';
 import 'package:app_client/ui/theme/custom_colors.dart';
 import 'package:app_client/ui/appbar/main_app_bar.dart';
 import 'package:app_client/ui/main_screen_with_content_grid.dart';
 import 'package:app_client/ui/tasks_screen.dart';
+import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../blocs/notes_cubit.dart';
@@ -19,31 +21,36 @@ class MainScreen extends State<NavigationScreen> {
   int currentPageIndex = 0;
   @override
   Widget build(BuildContext context) {
+    var notesCubit = context.read<NotesCubit>();
     var cubit = context.read<NotesCubit>();
 
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: MainAppBar(
         onSearchPress: () => Navigator.pushNamed(context, '/search'),
       ),
       bottomNavigationBar: NavigationBar(
+        surfaceTintColor: Colors.black,
+        overlayColor: const MaterialStatePropertyAll<Color>(Colors.black),
+        shadowColor: Colors.black,
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;
           });
         },
-        indicatorColor: Colors.red,
+        backgroundColor: const Color.fromRGBO(0, 0, 0, 1.0),
+        indicatorColor: CustomColors.lightGrey,
         selectedIndex: currentPageIndex,
-        destinations: const <Widget>[
+        destinations:  const <Widget>[
           NavigationDestination(
-            icon: Badge(child: Icon(Icons.notifications_sharp)),
-            label: 'Notifications',
+            icon: Badge(child: Icon(Icons.file_copy_rounded, color: Colors.white,)),
+            label: 'Notes',
           ),
           NavigationDestination(
             icon: Badge(
-              label: Text('2'),
-              child: Icon(Icons.messenger_sharp),
+              child: Icon(Icons.calendar_today_outlined, color: Colors.white,),
             ),
-            label: 'Messages',
+            label: "To Do's",
           ),
         ],
       ),
@@ -64,21 +71,13 @@ class MainScreen extends State<NavigationScreen> {
           ),),
         Padding(padding: const EdgeInsets.only(top: 30),  child:TaskListScreen(),),
       ][currentPageIndex],
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(right: 16, bottom: 16),
-        child: FloatingActionButton.extended(
-          onPressed: () =>
-          {
-            Navigator.pushNamed(context, '/add'),
-          },
-          elevation: 24,
-          backgroundColor: CustomColors.red,
-
-          label: const Text(
-            'Add Note', style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: "Nunito-Bold"),),
-          icon: const Icon(IconData(0xe900, fontFamily: "NothingIcon"), size: 26, color: Colors.white,),
-        ),
-      ),
+      floatingActionButton: Builder(builder: (context) {
+        if (currentPageIndex == 0) {
+          return addNoteButton(context);
+        }else{
+          return addTaskButton(context);
+        }
+      },)
     );
   }
 }

@@ -132,3 +132,21 @@ Color titleColor(Color indexColor ) {
     return Colors.white;
   }
 }
+
+Widget addNoteButton(BuildContext context) {
+  return  Padding(
+    padding: const EdgeInsets.only(right: 16, bottom: 16),
+    child: FloatingActionButton.extended(
+      onPressed: () =>
+      {
+        Navigator.pushNamed(context, '/add'),
+      },
+      elevation: 24,
+      backgroundColor: CustomColors.red,
+
+      label: const Text(
+        'Add Note', style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: "Nunito-Bold"),),
+      icon: const Icon(IconData(0xe900, fontFamily: "NothingIcon"), size: 26, color: Colors.white,),
+    ),
+  );
+}

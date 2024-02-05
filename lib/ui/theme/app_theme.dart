@@ -4,8 +4,10 @@ import 'package:provider/provider.dart';
 
 class AppTheme {
   static final dark = ThemeData(
-    primaryColor: CustomColors.deepRed,
-    visualDensity: VisualDensity.adaptivePlatformDensity,
+    textTheme: const TextTheme(bodyText1: TextStyle(color: Colors.white), bodyText2: TextStyle(color: Colors.white), button: TextStyle(color: Colors.white), ),
+    navigationBarTheme: const NavigationBarThemeData(backgroundColor: Colors.black, labelTextStyle: MaterialStatePropertyAll<TextStyle>(TextStyle(color: Colors.white))),
+    primaryTextTheme:  const TextTheme(bodyText1: TextStyle(color: Colors.white), bodyText2: TextStyle(color: Colors.white), button: TextStyle(color: Colors.white),),
+    backgroundColor: Colors.black,
     canvasColor: Colors.white,
       inputDecorationTheme: const InputDecorationTheme(
         filled: true,
@@ -16,7 +18,7 @@ class AppTheme {
       dialogTheme: const DialogTheme(
         titleTextStyle: TextStyle(color: Colors.white),
         contentTextStyle: TextStyle(color: Colors.white),
-        backgroundColor: CustomColors.backgroundColor,
+        backgroundColor: Colors.black,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(16.0),
@@ -24,5 +26,5 @@ class AppTheme {
         ),
       ),
       fontFamily: 'Nunito',
-      scaffoldBackgroundColor: CustomColors.backgroundColor, colorScheme: ColorScheme.fromSeed(seedColor: Colors.black, background: Colors.black));
+      scaffoldBackgroundColor: CustomColors.backgroundColor, colorScheme: ColorScheme.fromSeed(seedColor: Colors.white, background: Colors.black));
 }

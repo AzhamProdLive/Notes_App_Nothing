@@ -97,6 +97,10 @@ class ShowNoteScreen extends StatelessWidget {
                           controller: _bodyController,
                           customStyles: const DefaultStyles(
                             h1: DefaultTextBlockStyle(TextStyle(color: Colors.white, fontSize: 37, ), VerticalSpacing(10, 10,), VerticalSpacing(0, 0,), null),
+                            indent: DefaultTextBlockStyle(TextStyle(color: Colors.white, fontSize: 21, fontFamily: "Nunito"), VerticalSpacing(0, 0,), VerticalSpacing(0, 0), null),
+                            leading: DefaultTextBlockStyle(TextStyle(color: Colors.white, fontSize: 21, fontFamily: "Nunito"), VerticalSpacing(0, 0,), VerticalSpacing(0, 0), null),
+                            align: DefaultTextBlockStyle(TextStyle(color: Colors.white, fontSize: 21, fontFamily: "Nunito"), VerticalSpacing(0, 0,), VerticalSpacing(0, 0), null),
+                            quote: DefaultTextBlockStyle(TextStyle(color: Colors.white, fontSize: 16, fontFamily: "Nunito"), VerticalSpacing(0, 0,), VerticalSpacing(0, 0), null),
                             paragraph: DefaultTextBlockStyle(TextStyle(color: Colors.white, fontSize: 21, fontFamily: "Nunito"), VerticalSpacing(0, 0,), VerticalSpacing(0, 0), null),
                             h2: DefaultTextBlockStyle(TextStyle(color: Colors.white, fontSize: 45, fontFamily: "Nothing"), VerticalSpacing(10, 10,), VerticalSpacing(0, 0), null),
                           h3: DefaultTextBlockStyle(TextStyle(color: Colors.white60, fontSize: 20), VerticalSpacing(0, 0,), VerticalSpacing(0, 0), null)),
