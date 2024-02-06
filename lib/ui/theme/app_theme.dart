@@ -4,6 +4,9 @@ import 'package:provider/provider.dart';
 
 class AppTheme {
   static final dark = ThemeData(
+    typography: Typography.material2018(),
+    primaryColor: Colors.white,
+    splashColor: Colors.white,
     textTheme: const TextTheme(bodyText1: TextStyle(color: Colors.white), bodyText2: TextStyle(color: Colors.white), button: TextStyle(color: Colors.white), ),
     navigationBarTheme: const NavigationBarThemeData(backgroundColor: Colors.black, labelTextStyle: MaterialStatePropertyAll<TextStyle>(TextStyle(color: Colors.white))),
     primaryTextTheme:  const TextTheme(bodyText1: TextStyle(color: Colors.white), bodyText2: TextStyle(color: Colors.white), button: TextStyle(color: Colors.white),),

@@ -19,7 +19,7 @@ void main() async {
   await openDatabase(join(await getDatabasesPath(), 'tasks_database.db'),
       onCreate: (db, version) {
         return db.execute(
-            'CREATE TABLE tasks(id INTEGER PRIMARY KEY AUTOINCREMENT, task TEXT)');
+            'CREATE TABLE tasks(id INTEGER PRIMARY KEY AUTOINCREMENT, task TEXT, isDone INTEGER DEFAULT 0)');
       }, version: 1);
 
   runApp(const MyApp());
@@ -54,6 +54,7 @@ class MyApp extends StatelessWidget {
           '/search': (context) => const SearchScreen(),
           '/add': (context) => NoteAddScreen(),
           '/show': (context) => ShowNoteScreen(),
+          '/bc': (context) => const LoadingScreen(),
         },
       ),
     );

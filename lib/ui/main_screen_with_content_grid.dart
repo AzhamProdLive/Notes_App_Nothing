@@ -23,8 +23,8 @@ class MainScreenWithContentGridView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child:
           GridView.count(crossAxisCount: 2,
-
-            children: List.generate(notes.length, (index) {
+            physics: ClampingScrollPhysics(),
+            children: List.generate(notes.length,  (index) {
               int row = index ~/ 2;
               double dx = -30.0 * (row + 1);
              return Container( transform: Matrix4.translationValues(0, dx, 0),
