@@ -15,6 +15,9 @@ class _TaskListScreenState extends State<TaskListScreen> {
   List<Task> tasks = [];
   final TextEditingController _textEditingController = TextEditingController();
 
+
+
+
   @override
   void initState() {
     super.initState();
@@ -28,12 +31,14 @@ class _TaskListScreenState extends State<TaskListScreen> {
 
   Widget addTaskButton(BuildContext context,){
     return FloatingActionButton(
-      backgroundColor: CustomColors.red,
+      shape: CircleBorder(side: BorderSide(width: 3, color: CustomColors.lightGrey)),
+      backgroundColor: CustomColors.backgroundColor,
+
       onPressed: () {
        _addTask(context);
       },
       tooltip: 'Add Task',
-      child: const Icon(Icons.add),
+      child: const Icon(Icons.add, color: CustomColors.lightGrey,),
     );
   }
 
@@ -43,53 +48,105 @@ class _TaskListScreenState extends State<TaskListScreen> {
       _loadTasks();
     });
 
+    return _buildTaskList(tasks, 0);
+
+    
+  }
+
+  Widget _buildTaskList(List<Task> tasks, int ptId) {
     return ListView.builder(
-        itemCount: tasks.length,
-        itemBuilder: (context, index) {
-          return InkWell(
-              onTap: () => {},
-              child: Dismissible(
-                key: Key(tasks[index].id.toString()),
-                onDismissed: (direction) {
-                  _deleteTask(tasks[index]);
-                  setState(() {
-                    tasks.removeAt(index);
-                  });
-                },
-                background: Container(
-                  alignment: Alignment.centerRight,
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 2, ),
-                      borderRadius: const BorderRadius.all(Radius.circular(20))
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Icon(
-                      Icons.delete,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                child: Container(
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: Colors.white,
+      physics: const ClampingScrollPhysics(),
+      itemCount: tasks.length,
+      itemBuilder: (context, index) {
+        final task = tasks[index];
+        final subtasks = _getSubtasks(task.id);
+        if (tasks[index].parentId == ptId){
+        return InkWell(
+          onTap: () => {},
+          child: Dismissible(
+            key: Key(tasks[index].id.toString()),
+            onDismissed: (direction) {
+              _deleteTask(tasks[index]);
+              setState(() {
+                tasks.removeAt(index);
+              });
+            },
+            background: Container(
+              alignment: Alignment.centerRight,
+              decoration: BoxDecoration(
                   border: Border.all(width: 2, ),
                   borderRadius: const BorderRadius.all(Radius.circular(20))
+              ),
+              child: const Padding(
+                padding: EdgeInsets.all(10),
+                child: Icon(
+                  Icons.delete,
+                  color: Colors.white,
                 ),
-                child: Container(
-                  padding: const EdgeInsets.all(10.0),
-                  decoration: const BoxDecoration(
-                  ), child:  CheckboxListTile(
-                      title: Text(tasks[index].task),
-                      value: tasks[index].isDone == 1,
-                      onChanged: (bool? value) {
-                        _toggleTask(tasks[index]);
-                      },
+              ),
+            ),
+            child:  Column(
+              children: [Column(crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min, children: [ Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(width: 2, ),
+                        borderRadius: const BorderRadius.all(Radius.circular(50))),
+                    child: Container(
+                      padding: const EdgeInsets.all(10.0),
+                      decoration: const BoxDecoration(),
+                      child:
+                      CheckboxListTile(
+                        title: Text(tasks[index].task),
+                        value: tasks[index].isDone == 1,
+                        onChanged: (bool? value) {
+                          _toggleTask(tasks[index]);
+                        },
+                      ),)),
+                  Row(children: [
+
+                  IconButton(onPressed:() {
+                    _editTask(tasks[index], context);
+                  },
+
+                    style: const ButtonStyle(shape: MaterialStatePropertyAll<OutlinedBorder>(CircleBorder(side: BorderSide(width: 3, color: CustomColors.lightGrey)))),
+                    icon:
+                    Icon(Icons.edit, color: CustomColors.lightGrey,),),
+                    Padding(
+                      padding: EdgeInsets.only(left: 16.0),
+                      child: InkWell(
+                        customBorder: RoundedRectangleBorder(
+                          side: const BorderSide (color: CustomColors.lightGrey, width: 2),
+                          borderRadius: BorderRadius.circular(40,),
+                        ),
+                        onTap: () {
+                          _addSubtask(task.id, context);
+                        },
+                        child: const Row(
+                          children: [
+                            Icon(Icons.add, color: CustomColors.lightGrey),
+                            Text('Add Subtask', style: TextStyle(color: CustomColors.lightGrey),),
+                          ],
+                        ),
+                      ),
                     ),
-                 )),),);
-        },
-      );/*
+                ],),
+
+                ],),
+                if (subtasks.isNotEmpty)
+                  Container(
+                      height: subtasks.length*150 ,
+
+                      padding: EdgeInsets.only(left: 25.0, right: 0),
+                      child: _buildTaskList(subtasks, tasks[index].id)
+                  ),
+              ],
+            ),
+          ),);}
+      },
+    );
+  }/*
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _addTask(context);
@@ -98,6 +155,9 @@ class _TaskListScreenState extends State<TaskListScreen> {
         child: Icon(Icons.add),
       ),
     );*/
+
+  List<Task> _getSubtasks(int parentId) {
+    return tasks.where((task) => task.parentId == parentId).toList();
   }
 
 
@@ -116,6 +176,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
           id: maps[index]['id'],
           task: maps[index]['task'],
           isDone: maps[index]['isDone'],
+          parentId: maps[index]['parentId']?? 0,
         );
       });
       WidgetsBinding.instance.addPostFrameCallback((_) {});
@@ -138,6 +199,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
           id: maps[index]['id'],
           task: maps[index]['task'],
           isDone: maps[index]['isDone'],
+          parentId: maps[index]['taskId'] ?? 0,
         );
       });
       WidgetsBinding.instance.addPostFrameCallback((_) {});
@@ -180,12 +242,53 @@ class _TaskListScreenState extends State<TaskListScreen> {
         },
       );
     }
-    Future<void> _insertTask(String task) async {
+
+
+  void _addSubtask(int parentId, BuildContext context) async {
+    final TextEditingController _textEditingController =
+    TextEditingController();
+
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Add Subtask'),
+          content: TextField(
+            controller: _textEditingController,
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () async {
+                // Add the subtask to the database
+                await _insertTask(_textEditingController.text,
+                    parentId: parentId);
+
+                // Reload the tasks from the database
+                _loadTasks_dp();
+                didChangeDependencies();
+
+                Navigator.of(context).pop();
+              },
+              child: Text('Add'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+    Future<void> _insertTask(String task,  {int? parentId}) async {
       final Database database = await openDatabase(
         join(await getDatabasesPath(), 'tasks_database.db'),
       );
 
-      await database.insert('tasks', {'task': task});
+      await database.insert('tasks', {'task': task, 'parentId': parentId});
     }
 
     Future<void> _toggleTask(Task task) async {
@@ -205,6 +308,56 @@ class _TaskListScreenState extends State<TaskListScreen> {
       // Reload the tasks from the database
 
     }
+
+    void _editTask(Task task, BuildContext context) async {
+      final TextEditingController _editingController =
+      TextEditingController(text: task.task);
+
+      await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Edit Task'),
+            content: TextField(
+              controller: _editingController,
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () async {
+                  // Update the task in the database
+                  await _updateTask(task.id, _editingController.text);
+
+                  // Reload the tasks from the database
+                  _loadTasks();
+
+                  Navigator.of(context).pop();
+                },
+                child: Text('Save'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+
+  Future<void> _updateTask(int taskId, String updatedTask) async {
+    final Database database = await openDatabase(
+      join(await getDatabasesPath(), 'tasks_database.db'),
+    );
+
+    await database.update(
+      'tasks',
+      {'task': updatedTask},
+      where: 'id = ?',
+      whereArgs: [taskId],
+    );
+  }
 
     Future<void> _deleteTask(Task task) async {
       final Database database = await openDatabase(
@@ -226,8 +379,9 @@ class Task {
   final int id;
   final String task;
   final int isDone;
+  final int parentId;
 
-  Task({required this.id, required this.task, required this.isDone});
+  Task({required this.id, required this.task, required this.isDone, required this.parentId});
 }
 
 Widget addTaskButton(BuildContext context) {

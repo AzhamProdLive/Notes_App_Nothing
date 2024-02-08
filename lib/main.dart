@@ -7,9 +7,12 @@ import 'package:app_client/ui/show_note_screen.dart';
 import 'package:app_client/ui/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:app_client/background_service/background_service.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'blocs/notes_search_cubit.dart';
 
@@ -19,7 +22,7 @@ void main() async {
   await openDatabase(join(await getDatabasesPath(), 'tasks_database.db'),
       onCreate: (db, version) {
         return db.execute(
-            'CREATE TABLE tasks(id INTEGER PRIMARY KEY AUTOINCREMENT, task TEXT, isDone INTEGER DEFAULT 0)');
+            'CREATE TABLE tasks(id INTEGER PRIMARY KEY AUTOINCREMENT, task TEXT, isDone INTEGER DEFAULT 0, parentId INTEGER DEFAULT 0)');
       }, version: 1);
 
   runApp(const MyApp());
