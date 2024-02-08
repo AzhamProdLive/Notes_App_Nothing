@@ -143,6 +143,8 @@ Widget addNoteButton(BuildContext context) {
       },
       elevation: 24,
       backgroundColor: CustomColors.red,
+      shape: RoundedRectangleBorder( side: const BorderSide (color: CustomColors.lightGrey, width: 2),
+        borderRadius: BorderRadius.circular(40,),),
 
       label: const Text(
         'Add Note', style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: "Nunito-Bold"),),
