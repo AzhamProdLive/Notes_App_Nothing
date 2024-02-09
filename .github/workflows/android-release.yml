@@ -42,4 +42,7 @@ jobs:
       # Builds the APK
       - name: Build and Release APK
         uses: r0user/release-apk@V1.0
+        env:
+         GITHUB_TOKEN: ${{ secrets.TESTANDROIDBUILDS }}
+         APP_FOLDER: build
             
