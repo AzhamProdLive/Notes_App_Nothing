@@ -39,3 +39,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Start release build
         run: flutter build appbundle
+      # Builds the APK
+      - name: Build and Release APK
+        uses: r0user/release-apk@V1.0
+            
