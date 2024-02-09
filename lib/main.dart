@@ -57,19 +57,8 @@ class MyApp extends StatelessWidget {
           '/search': (context) => const SearchScreen(),
           '/add': (context) => NoteAddScreen(),
           '/show': (context) => ShowNoteScreen(),
-          '/bc': (context) => const LoadingScreen(),
         },
       ),
     );
   }
 }
-
-class LoadingScreen extends StatelessWidget {
-  const LoadingScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(home: Scaffold( body: Container(color: Colors.white),
-    )
-    );
-  }}

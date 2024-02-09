@@ -32,13 +32,13 @@ class _TaskListScreenState extends State<TaskListScreen> {
   Widget addTaskButton(BuildContext context,){
     return FloatingActionButton(
       shape: CircleBorder(side: BorderSide(width: 3, color: CustomColors.lightGrey)),
-      backgroundColor: CustomColors.backgroundColor,
+      backgroundColor: CustomColors.lightGrey,
 
       onPressed: () {
        _addTask(context);
       },
       tooltip: 'Add Task',
-      child: const Icon(Icons.add, color: CustomColors.lightGrey,),
+      child: const Icon(Icons.add, color: CustomColors.backgroundColor,),
     );
   }
 
@@ -48,56 +48,67 @@ class _TaskListScreenState extends State<TaskListScreen> {
       _loadTasks();
     });
 
-    return _buildTaskList(tasks, 0);
+    return _buildTaskList(tasks, 0, 0);
 
     
   }
 
-  Widget _buildTaskList(List<Task> tasks, int ptId) {
+  Widget _buildTaskList(List<Task> tasks, int ptId, int sublistNR) {
     return ListView.builder(
       physics: const ClampingScrollPhysics(),
       itemCount: tasks.length,
       itemBuilder: (context, index) {
         final task = tasks[index];
         final subtasks = _getSubtasks(task.id);
-        if (tasks[index].parentId == ptId){
-        return InkWell(
-          onTap: () => {},
-          child: Dismissible(
-            key: Key(tasks[index].id.toString()),
-            onDismissed: (direction) {
-              _deleteTask(tasks[index]);
-              setState(() {
-                tasks.removeAt(index);
+        if (tasks[index].parentId == ptId && sublistNR < 3){
+        return Column(
+          children: [ Dismissible(
+              confirmDismiss: (DismissDirection direction) async {
+                _deleteTask(tasks[index]);
+                super.setState(() {
+                  tasks.removeAt(index);
               });
+
+              subtasks.forEach((subtask) {
+                _deleteTask(subtask);
+              });
+              return null;
             },
-            background: Container(
+              key: Key(task.id.toString()),
+              direction: DismissDirection.horizontal,
+            background: Padding(padding: EdgeInsets.only(bottom: 40), child: Container(
               alignment: Alignment.centerRight,
               decoration: BoxDecoration(
-                  border: Border.all(width: 2, ),
+                  border: Border.all(width: 2,),
                   borderRadius: const BorderRadius.all(Radius.circular(20))
               ),
               child: const Padding(
                 padding: EdgeInsets.all(10),
                 child: Icon(
-                  Icons.delete,
-                  color: Colors.white,
+                  Icons.delete_outline,
+                  color: CustomColors.whiteMain,
                 ),
               ),
-            ),
-            child:  Column(
-              children: [Column(crossAxisAlignment: CrossAxisAlignment.start,
+            ),),
+            child: Builder(builder: (context) {
+              return Column(crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min, children: [ Container(
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(width: 2, ),
-                        borderRadius: const BorderRadius.all(Radius.circular(50))),
+                        color: CustomColors.whiteMain,
+                        border: Border.all(width: 2,),
+                        borderRadius: const BorderRadius.all(
+                            Radius.circular(50))),
                     child: Container(
                       padding: const EdgeInsets.all(10.0),
                       decoration: const BoxDecoration(),
                       child:
                       CheckboxListTile(
+                        checkboxShape: const CircleBorder(
+                            side: BorderSide(color: CustomColors.lightGrey,)),
                         title: Text(tasks[index].task),
                         value: tasks[index].isDone == 1,
                         onChanged: (bool? value) {
@@ -106,44 +117,54 @@ class _TaskListScreenState extends State<TaskListScreen> {
                       ),)),
                   Row(children: [
 
-                  IconButton(onPressed:() {
-                    _editTask(tasks[index], context);
-                  },
+                    IconButton(onPressed: () {
+                      _editTask(tasks[index], context);
+                    },
 
-                    style: const ButtonStyle(shape: MaterialStatePropertyAll<OutlinedBorder>(CircleBorder(side: BorderSide(width: 3, color: CustomColors.lightGrey)))),
-                    icon:
-                    Icon(Icons.edit, color: CustomColors.lightGrey,),),
-                    Padding(
-                      padding: EdgeInsets.only(left: 16.0),
-                      child: InkWell(
-                        customBorder: RoundedRectangleBorder(
-                          side: const BorderSide (color: CustomColors.lightGrey, width: 2),
-                          borderRadius: BorderRadius.circular(40,),
-                        ),
-                        onTap: () {
-                          _addSubtask(task.id, context);
-                        },
-                        child: const Row(
-                          children: [
-                            Icon(Icons.add, color: CustomColors.lightGrey),
-                            Text('Add Subtask', style: TextStyle(color: CustomColors.lightGrey),),
-                          ],
-                        ),
-                      ),
-                    ),
-                ],),
+                      style: const ButtonStyle(
+                          shape: MaterialStatePropertyAll<OutlinedBorder>(
+                              CircleBorder(side: BorderSide(
+                                  width: 3, color: CustomColors.lightGrey)))),
+                      icon:
+                      const Icon(Icons.edit, color: CustomColors.lightGrey,),),
 
-                ],),
-                if (subtasks.isNotEmpty)
-                  Container(
-                      height: subtasks.length*150 ,
+                      Visibility(
+                        visible: (sublistNR < 2), child:
+                        Padding(
+                          padding: EdgeInsets.only(left: 16.0),
+                          child:  InkWell(
+                            customBorder: RoundedRectangleBorder(
+                              side: const BorderSide (
+                                  color: CustomColors.lightGrey, width: 2),
+                              borderRadius: BorderRadius.circular(40,),
+                            ),
+                            onTap: () {
+                              _addSubtask(task.id, context);
+                            },
+                            child: const Row(
+                              children: [
+                                Icon(Icons.add, color: CustomColors.lightGrey),
+                                Text('Add Subtask',
+                                  style: TextStyle(color: CustomColors.lightGrey),),
+                              ],
+                            ),
+                          ),
+                        ),),
+                  ],),
+                ],);
+            },)
+          ),
+            if (subtasks.isNotEmpty && sublistNR < 3)
+              Container(
+                  height: subtasks.length*150 ,
 
-                      padding: EdgeInsets.only(left: 25.0, right: 0),
-                      child: _buildTaskList(subtasks, tasks[index].id)
-                  ),
-              ],
-            ),
-          ),);}
+                  padding: const EdgeInsets.only(left: 25.0, right: 0),
+                  child: _buildTaskList(subtasks, tasks[index].id, sublistNR + 1)
+              ),
+          ],);
+        }else{
+          return Container();
+        }
       },
     );
   }/*
@@ -155,6 +176,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
         child: Icon(Icons.add),
       ),
     );*/
+
 
   List<Task> _getSubtasks(int parentId) {
     return tasks.where((task) => task.parentId == parentId).toList();

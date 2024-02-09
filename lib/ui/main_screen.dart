@@ -25,14 +25,13 @@ class MainScreen extends State<NavigationScreen> {
     var cubit = context.read<NotesCubit>();
 
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: MainAppBar(
         onSearchPress: () => Navigator.pushNamed(context, '/search'),
       ),
       bottomNavigationBar: NavigationBar(
         surfaceTintColor: Colors.black,
+
         overlayColor: const MaterialStatePropertyAll<Color>(Colors.black),
-        shadowColor: Colors.black,
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;
@@ -40,6 +39,7 @@ class MainScreen extends State<NavigationScreen> {
         },
         backgroundColor: const Color.fromRGBO(0, 0, 0, 1.0),
         indicatorColor: CustomColors.lightGrey,
+        indicatorShape: RoundedRectangleBorder(side: const BorderSide(width: 100), borderRadius: BorderRadius.circular(50), ),
         selectedIndex: currentPageIndex,
         destinations:  const <Widget>[
           NavigationDestination(
