@@ -39,28 +39,32 @@ class AppTheme {
       ),
       scaffoldBackgroundColor: CustomColors.backgroundColor, colorScheme: ColorScheme.fromSeed(seedColor: Colors.white, background: Colors.black),
 
-      fontFamily: 'Nunito', checkboxTheme: CheckboxThemeData(
- fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
- if (states.contains(MaterialState.disabled)) { return null; }
- if (states.contains(MaterialState.selected)) { return toggleableActiveCustomColor; }
- return null;
- }),
- ), radioTheme: RadioThemeData(
- fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
- if (states.contains(MaterialState.disabled)) { return null; }
- if (states.contains(MaterialState.selected)) { return toggleableActiveCustomColor; }
- return null;
- }),
- ), switchTheme: SwitchThemeData(
- thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
- if (states.contains(MaterialState.disabled)) { return null; }
- if (states.contains(MaterialState.selected)) { return toggleableActiveCustomColor; }
- return null;
- }),
- trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
- if (states.contains(MaterialState.disabled)) { return null; }
- if (states.contains(MaterialState.selected)) { return toggleableActiveCustomColor; }
- return null;
- }),
- ),);
+      fontFamily: 'Nunito',
+
+    checkboxTheme: CheckboxThemeData(
+       fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+         if (states.contains(MaterialState.disabled)) { return null; }
+         if (states.contains(MaterialState.selected)) { return toggleableActiveCustomColor; }
+         return null;
+       }),
+        ),
+    radioTheme: RadioThemeData(
+       fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+       if (states.contains(MaterialState.disabled)) { return null; }
+       if (states.contains(MaterialState.selected)) { return toggleableActiveCustomColor; }
+       return null;
+       }),
+       ),
+    switchTheme: SwitchThemeData(
+       thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+         if (states.contains(MaterialState.disabled)) { return null; }
+         if (states.contains(MaterialState.selected)) { return toggleableActiveCustomColor; }
+         return null;
+       }),
+       trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+         if (states.contains(MaterialState.disabled)) { return null; }
+         if (states.contains(MaterialState.selected)) { return toggleableActiveCustomColor; }
+         return null;
+       }),
+       ),);
 }

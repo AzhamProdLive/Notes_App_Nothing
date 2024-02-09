@@ -98,7 +98,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                         .size
                         .width,
                     decoration: BoxDecoration(
-                        color: CustomColors.whiteMain,
+                        color: taskBackgroundColor(tasks[index].isDone),
                         border: Border.all(width: 2,),
                         borderRadius: const BorderRadius.all(
                             Radius.circular(50))),
@@ -130,30 +130,40 @@ class _TaskListScreenState extends State<TaskListScreen> {
 
                       Visibility(
                         visible: (sublistNR < 2), child:
-                        Padding(
-                          padding: EdgeInsets.only(left: 16.0),
-                          child:  InkWell(
-                            customBorder: RoundedRectangleBorder(
-                              side: const BorderSide (
-                                  color: CustomColors.lightGrey, width: 2),
-                              borderRadius: BorderRadius.circular(40,),
+                        Container(
+                          width: 200,
+                          height: 42,
+                          decoration: BoxDecoration(
+                              color: taskBackgroundColor(tasks[index].isDone),
+                              border: Border.all(width: 2,),
+                              borderRadius: const BorderRadius.all(
+                                  Radius.circular(50))),
+                          child:
+                          Padding(
+                            padding: EdgeInsets.only(left: 16.0, ),
+                            child:   InkWell(
+                              customBorder: RoundedRectangleBorder(
+                                side: const BorderSide (
+                                    color: CustomColors.lightGrey, width: 2),
+                                borderRadius: BorderRadius.circular(40,),
+                              ),
+                              onTap: () {
+                                _addSubtask(task.id, context);
+                              },
+                              child: const Row(
+                                children: [
+                                  Icon(Icons.add, color: CustomColors.backgroundColor),
+                                  Text('Add Subtask',
+                                    style: TextStyle(color: CustomColors.backgroundColor, fontSize: 16),),
+                                ],
+                              ),
                             ),
-                            onTap: () {
-                              _addSubtask(task.id, context);
-                            },
-                            child: const Row(
-                              children: [
-                                Icon(Icons.add, color: CustomColors.lightGrey),
-                                Text('Add Subtask',
-                                  style: TextStyle(color: CustomColors.lightGrey),),
-                              ],
-                            ),
-                          ),
-                        ),),
+                          ),),),
                   ],),
                 ],);
             },)
           ),
+            Container(height: 10),
             if (subtasks.isNotEmpty && sublistNR < 3)
               Container(
                   height: subtasks.length*150 ,
@@ -182,6 +192,13 @@ class _TaskListScreenState extends State<TaskListScreen> {
     return tasks.where((task) => task.parentId == parentId).toList();
   }
 
+  Color taskBackgroundColor(int isDone){
+    if(isDone == 1){
+      return Colors.white24;
+    }else{
+      return CustomColors.whiteMain;
+    };
+  }
 
   void _loadTasks() async {
     final Database database = await openDatabase(

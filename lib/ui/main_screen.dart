@@ -50,7 +50,7 @@ class MainScreen extends State<NavigationScreen> {
             icon: Badge(
               child: Icon(Icons.calendar_today_outlined, color: Colors.white,),
             ),
-            label: "To Do's",
+            label: "Tasks",
           ),
         ],
       ),
