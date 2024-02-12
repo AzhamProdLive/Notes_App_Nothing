@@ -1,8 +1,5 @@
-import 'dart:ffi';
-
 import 'package:app_client/ui/theme/custom_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -31,7 +28,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
     return FloatingActionButton(
       shape: const CircleBorder(
           side: BorderSide(width: 3, color: CustomColors.lightGrey)),
-      backgroundColor: CustomColors.lightGrey,
+      backgroundColor: CustomColors.whiteMain,
       onPressed: () {
         _addTask(context);
       },
@@ -148,9 +145,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                     Visibility(
                       visible: (sublistNR < 2),
                       child: Padding(
-                        padding: const EdgeInsets.only(
-                          left: 20.0,
-                        ),
+                        padding: const EdgeInsets.only(bottom: 10),
                         child: Container(
                             child: _taskWidget(
                           task,
@@ -190,9 +185,11 @@ class _TaskListScreenState extends State<TaskListScreen> {
 
   EdgeInsets _taskWidgetPadding(int sublistNR) {
     if (sublistNR == 0) {
-      return const EdgeInsets.only(left: 10, bottom: 10);
+      return const EdgeInsets.only(left: 15, bottom: 10);
     } else {
-      return const EdgeInsets.all(0);
+      return const EdgeInsets.only(
+        left: 15,
+      );
     }
   }
 
@@ -204,7 +201,9 @@ class _TaskListScreenState extends State<TaskListScreen> {
       subtaskslist.add(taskWidget(subtasks, i, _getSubtasks(subtasks[i].id),
           parentId, sublistNR + 1, context));
     }
-
+    subtaskslist.add(Container(
+      height: 10,
+    ));
     return subtaskslist;
   }
 
@@ -217,6 +216,12 @@ class _TaskListScreenState extends State<TaskListScreen> {
     var subtasks = _getSubtasks(task.id);
     if (subtasks.isNotEmpty && task.isDone == 0) {
       return ExpansionTile(
+          shape: const RoundedRectangleBorder(
+            side: BorderSide(color: CustomColors.greyHint, width: 5),
+            borderRadius: BorderRadius.all(Radius.circular((50))),
+          ),
+          backgroundColor: CustomColors.greyHint,
+          childrenPadding: const EdgeInsets.symmetric(horizontal: 20),
           collapsedTextColor: CustomColors.whiteMain,
           collapsedIconColor: CustomColors.red,
           iconColor: CustomColors.whiteMain,
@@ -271,38 +276,50 @@ class _TaskListScreenState extends State<TaskListScreen> {
       return Padding(
         padding: _taskWidgetPadding(sublistNR),
         child: Container(
-          width: 200,
-          height: 30,
           decoration: BoxDecoration(
-              color: _taskWidget_color(sublistNR),
               border: Border.all(
                 width: 2,
               ),
               borderRadius: const BorderRadius.all(Radius.circular(50))),
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: 16.0,
-            ),
-            child: InkWell(
-              customBorder: RoundedRectangleBorder(
-                side: const BorderSide(color: CustomColors.lightGrey, width: 2),
-                borderRadius: BorderRadius.circular(
-                  40,
-                ),
+          child: InkWell(
+            customBorder: RoundedRectangleBorder(
+              side: const BorderSide(color: CustomColors.lightGrey, width: 2),
+              borderRadius: BorderRadius.circular(
+                40,
               ),
-              onTap: () {
-                _addSubtask(task.id, context);
-              },
-              child: const Row(
-                children: [
-                  Icon(Icons.add, color: CustomColors.lightGrey),
-                  Text(
+            ),
+            onTap: () {
+              _addSubtask(task.id, context);
+            },
+            child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: CustomColors.whiteMain,
+                      border: Border.all(
+                        width: 2,
+                      ),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(50))),
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: const Icon(Icons.add, color: CustomColors.lightGrey),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: CustomColors.whiteMain,
+                      border: Border.all(
+                        width: 2,
+                      ),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(50))),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: const Text(
                     'Add Subtask',
                     style:
                         TextStyle(color: CustomColors.lightGrey, fontSize: 16),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
@@ -375,8 +392,21 @@ class _TaskListScreenState extends State<TaskListScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Add Task'),
+          title: const Text(
+            'Add Task',
+            style: TextStyle(fontSize: 20),
+          ),
           content: TextField(
+            decoration: InputDecoration(
+              fillColor: CustomColors.greyHint,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(
+                  width: 0,
+                  style: BorderStyle.none,
+                ),
+              ),
+            ),
             controller: _textEditingController,
           ),
           actions: <Widget>[
@@ -384,7 +414,8 @@ class _TaskListScreenState extends State<TaskListScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Cancel'),
+              child: const Text('Cancel',
+                  style: TextStyle(color: CustomColors.red)),
             ),
             TextButton(
               onPressed: () async {
@@ -398,7 +429,10 @@ class _TaskListScreenState extends State<TaskListScreen> {
 
                 Navigator.of(context).pop();
               },
-              child: const Text('Add'),
+              child: const Text(
+                'Add',
+                style: TextStyle(color: CustomColors.whiteMain),
+              ),
             ),
           ],
         );
@@ -413,8 +447,21 @@ class _TaskListScreenState extends State<TaskListScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Add Subtask'),
+          title: const Text(
+            'Add Subtask',
+            style: TextStyle(fontSize: 20),
+          ),
           content: TextField(
+            decoration: InputDecoration(
+              fillColor: CustomColors.greyHint,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(
+                  width: 0,
+                  style: BorderStyle.none,
+                ),
+              ),
+            ),
             controller: textEditingController,
           ),
           actions: <Widget>[
@@ -422,7 +469,8 @@ class _TaskListScreenState extends State<TaskListScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Cancel'),
+              child: const Text('Cancel',
+                  style: TextStyle(color: CustomColors.red)),
             ),
             TextButton(
               onPressed: () async {
@@ -436,7 +484,8 @@ class _TaskListScreenState extends State<TaskListScreen> {
 
                 Navigator.of(context).pop();
               },
-              child: const Text('Add'),
+              child: const Text('Add',
+                  style: TextStyle(color: CustomColors.whiteMain)),
             ),
           ],
         );
