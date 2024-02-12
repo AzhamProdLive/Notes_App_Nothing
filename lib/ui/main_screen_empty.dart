@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 
 class MainScreenEmpty extends StatelessWidget {
   const MainScreenEmpty({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Center(child:
           Stack(
             children: [
             Container(
               alignment: Alignment.center,
-              padding: EdgeInsets.only(top: 0),
+              padding: const EdgeInsets.only(top: 0),
               child: Image.asset("assets/images/No Notes - 1.png"),),
             Container(
               alignment: Alignment.topLeft,

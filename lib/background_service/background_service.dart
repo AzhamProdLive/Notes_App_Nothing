@@ -11,7 +11,7 @@ void init() async {
   final DarwinInitializationSettings initializationSettingsDarwin =
   DarwinInitializationSettings(
       onDidReceiveLocalNotification: onDidReceiveLocalNotification());
-  final LinuxInitializationSettings initializationSettingsLinux =
+  const LinuxInitializationSettings initializationSettingsLinux =
   LinuxInitializationSettings(
       defaultActionName: 'Open notification');
   final InitializationSettings initializationSettings = InitializationSettings(

@@ -1,6 +1,5 @@
 import 'package:app_client/ui/theme/custom_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 Color toggleableActiveCustomColor = Colors.black;
 
@@ -9,10 +8,9 @@ class AppTheme {
     typography: Typography.material2018(),
     primaryColor: Colors.white,
     splashColor: Colors.white,
-    backgroundColor: Colors.black,
 
-    textTheme: const TextTheme(bodyText1: TextStyle(color: Colors.white), bodyText2: TextStyle(color: Colors.white), button: TextStyle(color: Colors.white), ),
-    primaryTextTheme:  const TextTheme(bodyText1: TextStyle(color: Colors.white), bodyText2: TextStyle(color: Colors.white), button: TextStyle(color: Colors.white),),
+    textTheme: const TextTheme(bodyLarge: TextStyle(color: Colors.white), bodyMedium: TextStyle(color: Colors.white), labelLarge: TextStyle(color: Colors.white), ),
+    primaryTextTheme:  const TextTheme(bodyLarge: TextStyle(color: Colors.white), bodyMedium: TextStyle(color: Colors.white), labelLarge: TextStyle(color: Colors.white),),
 
    navigationBarTheme: const NavigationBarThemeData(backgroundColor: Colors.black, labelTextStyle: MaterialStatePropertyAll<TextStyle>(TextStyle(color: Colors.white))),
 
@@ -37,7 +35,7 @@ class AppTheme {
           ),
         ),
       ),
-      scaffoldBackgroundColor: CustomColors.backgroundColor, colorScheme: ColorScheme.fromSeed(seedColor: Colors.white, background: Colors.black),
+      scaffoldBackgroundColor: CustomColors.backgroundColor,
 
       fontFamily: 'Nunito',
 
@@ -66,5 +64,5 @@ class AppTheme {
          if (states.contains(MaterialState.selected)) { return toggleableActiveCustomColor; }
          return null;
        }),
-       ),);
+       ), colorScheme: ColorScheme.fromSeed(seedColor: Colors.white, background: Colors.black).copyWith(background: Colors.black),);
 }

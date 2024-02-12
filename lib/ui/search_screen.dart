@@ -4,7 +4,6 @@ import 'package:app_client/ui/main_screen_with_content_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../blocs/notes_cubit.dart';
 import '../blocs/notes_search_cubit.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -22,8 +21,8 @@ class SearchScreen extends StatelessWidget {
 
 class NotesNotFoundScreen extends StatelessWidget {
   const NotesNotFoundScreen({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,6 @@ import 'package:app_client/ui/theme/custom_colors.dart';
 import 'package:app_client/ui/appbar/add_note_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 
 
