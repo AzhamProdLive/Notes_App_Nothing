@@ -7,16 +7,25 @@ import 'package:app_client/ui/show_note_screen.dart';
 import 'package:app_client/ui/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
 
 import 'blocs/notes_search_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await openDatabase(join(await getDatabasesPath(), 'tasks_database.db'),
+      onCreate: (db, version) {
+        return db.execute(
+            'CREATE TABLE tasks(id INTEGER PRIMARY KEY AUTOINCREMENT, task TEXT, isDone INTEGER DEFAULT 0, parentId INTEGER DEFAULT 0)');
+      }, version: 1);
+
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +49,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => const MainScreen(),
+          '/': (context) => const NavigationScreen(),
           '/search': (context) => const SearchScreen(),
           '/add': (context) => NoteAddScreen(),
           '/show': (context) => ShowNoteScreen(),

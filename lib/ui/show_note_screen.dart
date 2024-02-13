@@ -8,6 +8,8 @@ import '../database/tables.dart';
 import 'appbar/show_note_app_bar.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'dart:convert';
+import 'package:app_client/ui/quill/quill_edit_menu.dart';
+import 'package:app_client/ui/quill/quill_editor_propertys.dart';
 
 class ShowNoteScreen extends StatelessWidget {
   ShowNoteScreen({super.key});
@@ -31,6 +33,7 @@ class ShowNoteScreen extends StatelessWidget {
         initialData: colorCubit.state,
         builder: (context, snapshot) {
           return Scaffold(
+            bottomSheet: QuillToolbarWidget(_bodyController),
             appBar: ShowNoteAppBar(
               onBackPressed: () async {
                 await saveChanges(context, cubit, colorCubit, note);
@@ -46,10 +49,8 @@ class ShowNoteScreen extends StatelessWidget {
                       ),
                       actions: <Widget>[
                         MaterialButton(
-                          onPressed: () => {
-                            cubit.deleteNote(note),
-                            Navigator.pop(context)
-                          },
+                          onPressed: () =>
+                              {cubit.deleteNote(note), Navigator.pop(context)},
                           child: const Text(
                             "DELETE",
                             style: TextStyle(color: CustomColors.deepRed),
@@ -75,6 +76,7 @@ class ShowNoteScreen extends StatelessWidget {
                 return await saveChanges(context, cubit, colorCubit, note);
               },
               child: SingleChildScrollView(
+                padding: const EdgeInsets.only(bottom: 40),
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
@@ -88,60 +90,15 @@ class ShowNoteScreen extends StatelessWidget {
                         decoration: const InputDecoration(
                           fillColor: CustomColors.backgroundColor,
                         ),
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 38, fontFamily: "Nothing"),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 38,
+                            fontFamily: "Nothing"),
                       ),
                       const SizedBox(height: 14),
-                      QuillEditor.basic(
-                        configurations: QuillEditorConfigurations(
-                          controller: _bodyController,
-                          customStyles: const DefaultStyles(
-                            h1: DefaultTextBlockStyle(TextStyle(color: Colors.white, fontSize: 37, ), VerticalSpacing(10, 10,), VerticalSpacing(0, 0,), null),
-                            paragraph: DefaultTextBlockStyle(TextStyle(color: Colors.white, fontSize: 21, fontFamily: "Nunito"), VerticalSpacing(0, 0,), VerticalSpacing(0, 0), null),
-                            h2: DefaultTextBlockStyle(TextStyle(color: Colors.white, fontSize: 45, fontFamily: "Nothing"), VerticalSpacing(10, 10,), VerticalSpacing(0, 0), null),
-                          h3: DefaultTextBlockStyle(TextStyle(color: Colors.white60, fontSize: 20), VerticalSpacing(0, 0,), VerticalSpacing(0, 0), null)),
-                          readOnly: false,
-                          autoFocus: true,
-                          placeholder: "Nothing",
-                          sharedConfigurations: const QuillSharedConfigurations(
-                            locale: Locale('de'),
-                          ),
-                        ),
-                      ),
+                      quillEditorPropertys(_bodyController)
                     ],
                   ),
-                ),
-              ),
-            ),
-            floatingActionButton: QuillToolbar.simple(
-              configurations: QuillSimpleToolbarConfigurations(
-                controller: _bodyController,
-                color: Colors.black54,
-                multiRowsDisplay: false,
-                headerStyleType: HeaderStyleType.buttons,
-                showBackgroundColorButton: false,
-                showColorButton: false,
-                showDividers: false,
-                showFontFamily: false,
-                showFontSize: false,
-                showCodeBlock: false,
-                showAlignmentButtons: true,
-                showClearFormat: false,
-                showIndent: false,
-                showInlineCode: false,
-                showQuote: false,
-                showSearchButton: false,
-                showSmallButton: false,
-                showSuperscript: false,
-                showDirection: false,
-                showJustifyAlignment: true,
-                showSubscript: false,
-                toolbarSize: 35,
-                sectionDividerColor: Colors.white,
-                buttonOptions: const QuillSimpleToolbarButtonOptions(base: QuillToolbarBaseButtonOptions( iconTheme: QuillIconTheme(iconButtonUnselectedData: IconButtonData(color: Colors.white, )), ),),
-                sharedConfigurations: const QuillSharedConfigurations(
-                  dialogBarrierColor: Colors.white,
-                  locale: Locale('de'),
                 ),
               ),
             ),
@@ -200,7 +157,9 @@ class ShowNoteScreen extends StatelessWidget {
     cubit.updateNote(Note(
         id: note.id,
         title: _titleController.text,
-        content: jsonEncode(_bodyController.document.toDelta().toJson(),),
+        content: jsonEncode(
+          _bodyController.document.toDelta().toJson(),
+        ),
         color: colorCubit.state.noteColor));
     Navigator.pop(context);
     return false;

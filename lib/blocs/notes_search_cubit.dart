@@ -7,7 +7,7 @@ import '../database/tables.dart';
 class NotesSearchCubit extends Cubit<NotesSearchState> {
   final NotesRepository _repository = NotesRepository();
 
-  NotesSearchCubit() : super(const NotesSearchState(currentNotes: <Note>[])) {}
+  NotesSearchCubit() : super(const NotesSearchState(currentNotes: <Note>[]));
 
   Future<void> getNoteByKeyword(String keyword) async {
     final newNotes =

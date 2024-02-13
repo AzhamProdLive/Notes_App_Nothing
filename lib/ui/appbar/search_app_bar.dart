@@ -1,11 +1,8 @@
-import 'dart:developer';
 
 import 'package:app_client/blocs/notes_search_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../blocs/notes_cubit.dart';
-import '../../blocs/notes_search_state.dart';
 
 class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
   SearchAppBar({super.key});

@@ -1,9 +1,10 @@
-import 'package:app_client/ui/theme/custom_colors.dart';
 import 'package:flutter/material.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MainAppBar(
-      {super.key, required this.onSearchPress, });
+  const MainAppBar({
+    super.key,
+    required this.onSearchPress,
+  });
 
   final Function onSearchPress;
 
@@ -16,24 +17,24 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text(
-          'NOTES',
-          style: TextStyle(
-            fontFamily: "Nothing",
-              fontWeight: FontWeight.normal,
-              fontSize: 44,
-              color: Colors.white),
-        ),
+              'NOTES',
+              style: TextStyle(
+                  fontFamily: "Nothing",
+                  fontWeight: FontWeight.normal,
+                  fontSize: 44,
+                  color: Colors.white),
+            ),
             Row(
               children: [
                 InkWell(
                   onTap: () => onSearchPress(),
                   borderRadius: BorderRadius.circular(18),
-                    child: const Icon(
-                      IconData(0xe90f, fontFamily: "NothingIcon"),
-                      color: Colors.white,
-                      size: 33,
-                    ),
+                  child: const Icon(
+                    Icons.search_rounded,
+                    color: Colors.white,
+                    size: 33,
                   ),
+                ),
                 const SizedBox(width: 15),
                 /*
                 InkWell(
