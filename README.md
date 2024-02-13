@@ -1,6 +1,6 @@
 # Notes App for Nothing 
 
-<img width="1248" src="https://github.com/AzhamProdLive/Notes_App_Nothing/blob/eb2661b93ffb33ace5028d3d24e64728997e4b7e/cover.png">
+<img width="1248" src="https://github.com/AzhamProdLive/Notes_App_Nothing/blob/6e338ed45b6bf4a5ed4d89dd6e4aff7d8101bee2/Notes%20APP.png">
 
 A simple notes app. Uses Drift to store your notes. Assign colors for your notes. Search your notes easily.
 
