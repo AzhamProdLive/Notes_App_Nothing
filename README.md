@@ -4,6 +4,9 @@
 
 A simple notes app. Uses Drift to store your notes. Assign colors for your notes. Search your notes easily.
 
+Downloas:
+[Windows](https://github.com/AzhamProdLive/Notes_App_Nothing/blob/cfe6b209ce915163ef73b2c2009c30836baeff55/NNotesSetup.exe)
+
 ## Suport
 💻 Windows
 
