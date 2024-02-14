@@ -1,45 +1,20 @@
-# Notes App for Nothing 
+# Notes App for Nothing (Desktop)
 
-<img width="1248" src="https://github.com/AzhamProdLive/Notes_App_Nothing/blob/Beta-Test/Screenshot_20240201-184405.png?raw=true">
+<img width="1248" src="https://github.com/AzhamProdLive/Notes_App_Nothing/blob/d9b4db764bf69d611a090843b66f4ff9f1ea359b/NNodes%20APP%20desktop.png">
 
 A simple notes app. Uses Drift to store your notes. Assign colors for your notes. Search your notes easily.
 
-✅Download APK: https://github.com/AzhamProdLive/Notes_App_Nothing/blob/9e8913225fe6c1988aa253b51fa1ae25613cf7ad/Notes%20(1).apk
+## Suport
+💻 Windows
 
 ## Features
- - Supports Android
+ - Smooth Nothing themed UI
+   
+Notes:
  - Search notes
  - List view for notes
  - Color labels for notes
- - Smooth Nothing themed UI 
 
-## To-do
- - [ ] Google account support
- - [ ] pin 📍 nodes
- - [ ] Archive notes
-
-## Getting Started
-1. Clone the repository
-   
-   ```
-   git clone https://github.com/AzhamProdLive/Notes_App_Nothing.git
-   ```
-   
-2. Navigate to the project directory
-
-   ```
-   cd Notes_APP
-   ```
-   
-3. Install dependencies
-
-   ```
-   flutter pub get
-   ```
-
-4. Run the app
-   ```
-   flutter run
-   ```
----
- 
+Tasks:
+- Tasks
+- Subtasks
