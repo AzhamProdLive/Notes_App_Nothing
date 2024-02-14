@@ -6,8 +6,8 @@ Color toggleableActiveCustomColor = Colors.black;
 class AppTheme {
   static final dark = ThemeData(
     typography: Typography.material2018(),
-    primaryColor: Colors.white,
-    splashColor: Colors.white,
+    primaryColor: CustomColors.backgroundColor,
+    splashColor: CustomColors.backgroundColor,
     textTheme: const TextTheme(
       bodyLarge: TextStyle(color: Colors.white),
       bodyMedium: TextStyle(color: Colors.white),
@@ -22,11 +22,11 @@ class AppTheme {
         backgroundColor: Colors.black,
         labelTextStyle: MaterialStatePropertyAll<TextStyle>(
             TextStyle(color: Colors.white))),
-    canvasColor: Colors.white,
+    canvasColor: CustomColors.backgroundColor,
     inputDecorationTheme: const InputDecorationTheme(
         filled: true,
         fillColor: CustomColors.lightGrey,
-        focusColor: Colors.white,
+        focusColor: CustomColors.backgroundColor,
         hintStyle: TextStyle(color: Colors.white),
         border: InputBorder.none,
         labelStyle: TextStyle(color: CustomColors.whiteMain)),
@@ -89,7 +89,10 @@ class AppTheme {
       }),
     ),
     colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.white,
+        seedColor: CustomColors.backgroundColor,
+        surface: CustomColors.greyHint,
+        shadow: CustomColors.backgroundColor,
+        surfaceTint: CustomColors.backgroundColor,
         background: Colors.black,
         primary: CustomColors.red),
   );

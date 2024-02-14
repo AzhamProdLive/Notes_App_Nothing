@@ -27,7 +27,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
   ) {
     return FloatingActionButton(
       shape: const CircleBorder(
-          side: BorderSide(width: 3, color: CustomColors.lightGrey)),
+          side: BorderSide(width: 3, color: CustomColors.whiteMain)),
       backgroundColor: CustomColors.whiteMain,
       onPressed: () {
         _addTask(context);
@@ -96,11 +96,6 @@ class _TaskListScreenState extends State<TaskListScreen> {
               padding: const EdgeInsets.only(bottom: 40),
               child: Container(
                 alignment: Alignment.centerRight,
-                decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 2,
-                    ),
-                    borderRadius: const BorderRadius.all(Radius.circular(20))),
                 child: const Padding(
                   padding: EdgeInsets.all(10),
                   child: Icon(
@@ -113,15 +108,16 @@ class _TaskListScreenState extends State<TaskListScreen> {
             child: Builder(
               builder: (context) {
                 return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                        width: MediaQuery.of(context).size.width,
+                        width: MediaQuery.of(context).size.width - 6,
                         decoration: BoxDecoration(
                             color: taskBackgroundColor(tasks[index].isDone),
                             border: Border.all(
                               width: 2,
+                              color: taskBackgroundColor(tasks[index].isDone),
                             ),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(50))),
@@ -177,7 +173,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
 
   EdgeInsets taskPadding(int sublistNR) {
     if (sublistNR == 0) {
-      return const EdgeInsets.all(10);
+      return const EdgeInsets.all(0);
     } else {
       return const EdgeInsets.all(0);
     }
@@ -275,52 +271,42 @@ class _TaskListScreenState extends State<TaskListScreen> {
     } else if (task.isDone == 0) {
       return Padding(
         padding: _taskWidgetPadding(sublistNR),
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                width: 2,
-              ),
-              borderRadius: const BorderRadius.all(Radius.circular(50))),
-          child: InkWell(
-            customBorder: RoundedRectangleBorder(
-              side: const BorderSide(color: CustomColors.lightGrey, width: 2),
-              borderRadius: BorderRadius.circular(
-                40,
-              ),
+        child: InkWell(
+          customBorder: RoundedRectangleBorder(
+            side: const BorderSide(color: CustomColors.lightGrey, width: 2),
+            borderRadius: BorderRadius.circular(
+              40,
             ),
-            onTap: () {
-              _addSubtask(task.id, context);
-            },
-            child: Row(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      color: CustomColors.whiteMain,
-                      border: Border.all(
-                        width: 2,
-                      ),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(50))),
-                  padding: const EdgeInsets.symmetric(horizontal: 0),
-                  child: const Icon(Icons.add, color: CustomColors.lightGrey),
+          ),
+          onTap: () {
+            _addSubtask(task.id, context);
+          },
+          child: Row(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    color: CustomColors.whiteMain,
+                    border: Border.all(
+                      width: 2,
+                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(50))),
+                padding: const EdgeInsets.symmetric(horizontal: 0),
+                child: const Icon(Icons.add, color: CustomColors.lightGrey),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    color: CustomColors.whiteMain,
+                    border: Border.all(
+                      width: 2,
+                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(50))),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: const Text(
+                  'Add Subtask',
+                  style: TextStyle(color: CustomColors.lightGrey, fontSize: 16),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: CustomColors.whiteMain,
-                      border: Border.all(
-                        width: 2,
-                      ),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(50))),
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: const Text(
-                    'Add Subtask',
-                    style:
-                        TextStyle(color: CustomColors.lightGrey, fontSize: 16),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       );

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../blocs/notes_cubit.dart';
@@ -11,84 +12,82 @@ class MainScreenWithContentGridView extends StatelessWidget {
     super.key,
     required this.notes,
   });
-
   final List<Note> notes;
 
   @override
   Widget build(BuildContext context) {
+    @override
+    ScrollController _scrollController = ScrollController();
     var cubit = context.read<NotesCubit>();
 
-    return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: GridView.count(
-            crossAxisCount: 2,
-            physics: const ClampingScrollPhysics(),
-            children: List.generate(notes.length, (index) {
-              int row = index ~/ 2;
-              double dx = -30.0 * (row + 1);
-              return Container(
-                  //transform: Matrix4.translationValues(0, dx, 0),
-                  child: Dismissible(
-                      confirmDismiss: (DismissDirection direction) async {
-                        return await showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              backgroundColor: CustomColors.lightGrey,
-                              content: const Text(
-                                "Are you sure you wish to delete this note?",
-                                style: TextStyle(fontSize: 19),
-                              ),
-                              actions: <Widget>[
-                                MaterialButton(
-                                  onPressed: () => {
-                                    cubit.deleteNote(notes[index]),
-                                    Navigator.of(context).pop(true)
-                                  },
-                                  child: const Text(
-                                    "DELETE",
-                                    style:
-                                        TextStyle(color: CustomColors.deepRed),
-                                  ),
-                                ),
-                                MaterialButton(
-                                  onPressed: () =>
-                                      Navigator.of(context).pop(false),
-                                  child: const Text(
-                                    "CANCEL",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                      key: UniqueKey(),
-                      direction: DismissDirection.horizontal,
-                      background: Container(
-                        color: CustomColors.deepRed,
-                        child: const Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: Icon(Icons.delete_rounded,
-                              size: 36, color: Colors.white),
+    return CupertinoScrollbar(
+        thumbVisibility: true,
+        controller: _scrollController,
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: ListView.builder(
+              controller: _scrollController,
+              itemCount: notes.length,
+              itemBuilder: (context, index) => Dismissible(
+                confirmDismiss: (DismissDirection direction) async {
+                  return await showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        backgroundColor: CustomColors.lightGrey,
+                        content: const Text(
+                          "Are you sure you wish to delete this note?",
+                          style: TextStyle(fontSize: 19),
                         ),
-                      ),
-                      child: InkWell(
-                        onTap: () => Navigator.pushNamed(context, '/show',
-                            arguments: {'note': notes[index]}),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                              color: Color(notes[index].color),
-                              border: Border.all(
-                                width: 2,
-                              ),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20))),
-                          child: Container(
-                            padding: const EdgeInsets.all(10.0),
-                            /*decoration: BoxDecoration(
+                        actions: <Widget>[
+                          MaterialButton(
+                            onPressed: () => {
+                              cubit.deleteNote(notes[index]),
+                              Navigator.of(context).pop(true)
+                            },
+                            child: const Text(
+                              "DELETE",
+                              style: TextStyle(color: CustomColors.deepRed),
+                            ),
+                          ),
+                          MaterialButton(
+                            onPressed: () => Navigator.of(context).pop(false),
+                            child: const Text(
+                              "CANCEL",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                key: UniqueKey(),
+                direction: DismissDirection.horizontal,
+                background: const DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: CustomColors.deepRed,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Icon(Icons.delete_rounded,
+                        size: 36, color: Colors.white),
+                  ),
+                ),
+                child: InkWell(
+                  onTap: () => Navigator.pushNamed(context, '/show',
+                      arguments: {'note': notes[index]}),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                        color: Color(notes[index].color),
+                        border: Border.all(
+                          width: 2,
+                        ),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      /*decoration: BoxDecoration(
                               /*gradient: LinearGradient(
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
@@ -99,39 +98,46 @@ class MainScreenWithContentGridView extends StatelessWidget {
                                 ],
                               ),*/
                             ),*/
-                            child: Center(
-                              child: ListTile(
-                                  title: Text(
-                                    notes[index].title,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                    style: TextStyle(
-                                        fontSize: 25,
-                                        color: titleColor(
-                                            Color(notes[index].color)),
-                                        fontFamily: "Nothing"),
-                                  ),
-                                  subtitle: Text(
-                                    Document.fromJson(
-                                            json.decode(notes[index].content))
-                                        .toPlainText(),
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        color: textColor(
-                                            Color(notes[index].color))),
-                                  )),
+                      child: Center(
+                        child: ListTile(
+                            title: Text(
+                              notes[index].title,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: titleColor(Color(notes[index].color)),
+                                  fontFamily: "Nothing"),
                             ),
-                          ),
-                        ),
-                      )));
-            })));
+                            subtitle: Text(
+                              Document.fromJson(
+                                      json.decode(notes[index].content))
+                                  .toPlainText(),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 5,
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: textColor(Color(notes[index].color))),
+                            )),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )));
+  }
+}
+
+int gridCrossAxisCount(int noteslength, BuildContext context) {
+  int avSpace = MediaQuery.of(context).size.width ~/ 150;
+  if (avSpace < noteslength) {
+    return avSpace;
+  } else {
+    return noteslength;
   }
 }
 
 Color textColor(Color indexColor) {
-  if (indexColor == const Color.fromRGBO(239, 239, 239, 1.0)) {
+  if (indexColor == CustomColors.whiteMain) {
     return Colors.black54;
   } else {
     return Colors.white54;
@@ -139,7 +145,7 @@ Color textColor(Color indexColor) {
 }
 
 Color titleColor(Color indexColor) {
-  if (indexColor == const Color.fromRGBO(239, 239, 239, 1.0)) {
+  if (indexColor == CustomColors.whiteMain) {
     return Colors.black;
   } else {
     return Colors.white;

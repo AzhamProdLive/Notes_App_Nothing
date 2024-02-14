@@ -15,7 +15,9 @@ class NavigationScreen extends StatefulWidget {
   State<NavigationScreen> createState() => MainScreen();
 }
 
-class MainScreen extends State<NavigationScreen> {
+class MainScreen extends State<NavigationScreen> with TickerProviderStateMixin {
+  late final TabController _tabController;
+
   int currentPageIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -27,15 +29,17 @@ class MainScreen extends State<NavigationScreen> {
           onSearchPress: () => Navigator.pushNamed(context, '/search'),
         ),
         bottomNavigationBar: NavigationBar(
+          height: 60,
           surfaceTintColor: Colors.black,
           overlayColor: const MaterialStatePropertyAll<Color>(Colors.black),
+          shadowColor: Colors.black,
           onDestinationSelected: (int index) {
             setState(() {
               currentPageIndex = index;
               currentPageIndex = index;
             });
           },
-          backgroundColor: const Color.fromRGBO(0, 0, 0, 1.0),
+          backgroundColor: CustomColors.backgroundColor,
           indicatorColor: CustomColors.lightGrey,
           indicatorShape: RoundedRectangleBorder(
             side: const BorderSide(width: 100),
@@ -64,7 +68,7 @@ class MainScreen extends State<NavigationScreen> {
         ),
         body: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(top: 30),
+            padding: const EdgeInsets.only(top: 10),
             child: StreamBuilder<NotesState>(
               initialData: cubit.state,
               stream: cubit.stream,
@@ -80,14 +84,14 @@ class MainScreen extends State<NavigationScreen> {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.only(top: 30),
+            padding: EdgeInsets.only(top: 10),
             child: TaskListScreen(),
           ),
         ][currentPageIndex],
         floatingActionButton: Builder(
           builder: (context) {
             if (currentPageIndex == 0) {
-              return addNoteButton(context);
+              return Container();
             } else {
               return addTaskButton(context);
             }

@@ -1,18 +1,22 @@
+import 'package:app_client/ui/theme/custom_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 
 Widget QuillToolbarWidget(QuillController bodyController) {
-  return SizedBox(
-    height: 50,
+  return Container(
+    constraints: const BoxConstraints(maxHeight: 100),
     child: QuillToolbar.simple(
       configurations: QuillSimpleToolbarConfigurations(
         controller: bodyController,
-        color: Colors.black54,
-        multiRowsDisplay: false,
+        color: CustomColors.backgroundColor,
+        multiRowsDisplay: true,
         headerStyleType: HeaderStyleType.buttons,
         showBackgroundColorButton: false,
         showColorButton: false,
         showDividers: false,
+        showLink: false,
+        showUndo: false,
+        showRedo: false,
         showFontFamily: false,
         showFontSize: false,
         showCodeBlock: false,

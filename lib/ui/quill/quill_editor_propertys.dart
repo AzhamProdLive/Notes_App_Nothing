@@ -8,7 +8,7 @@ QuillEditor quillEditorPropertys(QuillController bodyController) {
       enableInteractiveSelection: true,
       controller: bodyController,
       enableSelectionToolbar: true,
-      textSelectionControls: CupertinoTextSelectionControls(),
+      textSelectionControls: CupertinoDesktopTextSelectionControls(),
       detectWordBoundary: true,
       disableClipboard: false,
       customStyles: const DefaultStyles(
