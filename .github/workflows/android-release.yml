@@ -44,5 +44,5 @@ jobs:
         uses: r0user/release-apk@V1.0
         env:
          GITHUB_TOKEN: ${{ secrets.TESTANDROIDBUILDS }}
-         APP_FOLDER: build
+         APP_FOLDER: https://github.com/AzhamProdLive/Notes_App_Nothing/tree/TestsBuildsWorkflow(temp)
             
