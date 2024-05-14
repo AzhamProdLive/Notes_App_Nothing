@@ -14,7 +14,7 @@ class NoteAddScreen extends StatelessWidget {
   NoteAddScreen({super.key});
 
   final _titleController = TextEditingController();
-  final _bodyController = QuillController.basic();
+  final _bodyController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +26,11 @@ class NoteAddScreen extends StatelessWidget {
         stream: colorCubit.stream,
         builder: (context, snapshot) {
           return Scaffold(
-            bottomSheet: QuillToolbarWidget(_bodyController),
             appBar: AddNoteAppBar(
               color: colorCubit.state.noteColor,
               onSavePress: () => saveNote(notesCubit, colorCubit, context),
               onDeletPressed: () async {
+                if (_bodyController.text.isNotEmpty) {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
@@ -68,7 +68,9 @@ class NoteAddScreen extends StatelessWidget {
                       ],
                     );
                   },
-                );
+                );} else {
+                  Navigator.pop(context);
+                }
               },
               onColorChangePress: () => changeColor(context, colorCubit),
             ),
@@ -94,7 +96,19 @@ class NoteAddScreen extends StatelessWidget {
                           fontFamily: "Nothing"),
                     ),
                     const SizedBox(height: 14),
-                    quillEditorPropertys(_bodyController)
+                    TextField(
+                      controller: _bodyController,
+                      textCapitalization: TextCapitalization.sentences,
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      decoration: const InputDecoration(
+                        hintText: 'Text',
+                        fillColor: CustomColors.backgroundColor,
+                      ),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,),
+                    ),
                   ],
                 ),
               ),
@@ -154,7 +168,7 @@ class NoteAddScreen extends StatelessWidget {
       if (_titleController.text.isNotEmpty) {
         cubit.addNote(
             _titleController.text,
-            jsonEncode(_bodyController.document.toDelta().toJson()),
+            _bodyController.text,
             colorCubit.state.noteColor);
         Navigator.pop(context);
         break;
