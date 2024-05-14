@@ -112,9 +112,7 @@ class MainScreenWithContentGridView extends StatelessWidget {
                                         fontFamily: "Nothing"),
                                   ),
                                   subtitle: Text(
-                                    Document.fromJson(
-                                            json.decode(notes[index].content))
-                                        .toPlainText(),
+                                    notes[index].content,
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 2,
                                     style: TextStyle(
@@ -131,7 +129,7 @@ class MainScreenWithContentGridView extends StatelessWidget {
 }
 
 Color textColor(Color indexColor) {
-  if (indexColor == const Color.fromRGBO(239, 239, 239, 1.0)) {
+  if (indexColor == const Color.fromRGBO(231,233,233, 1.0)) {
     return Colors.black54;
   } else {
     return Colors.white54;
@@ -139,7 +137,7 @@ Color textColor(Color indexColor) {
 }
 
 Color titleColor(Color indexColor) {
-  if (indexColor == const Color.fromRGBO(239, 239, 239, 1.0)) {
+  if (indexColor == const Color.fromRGBO(231,233,233, 1.0)) {
     return Colors.black;
   } else {
     return Colors.white;
@@ -154,9 +152,9 @@ Widget addNoteButton(BuildContext context) {
         Navigator.pushNamed(context, '/add'),
       },
       elevation: 24,
-      backgroundColor: CustomColors.red,
+      backgroundColor: CustomColors.lightGrey,
       shape: RoundedRectangleBorder(
-        side: const BorderSide(color: CustomColors.lightGrey, width: 2),
+        side: const BorderSide( width: 0),
         borderRadius: BorderRadius.circular(
           40,
         ),
