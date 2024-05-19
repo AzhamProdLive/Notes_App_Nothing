@@ -4,7 +4,7 @@
 
 A simple notes app. Uses Drift to store your notes. Assign colors for your notes. Search your notes easily.
 
-✅Download APK: [app-release.apk](https://github.com/AzhamProdLive/Notes_App_Nothing/releases/download/releas3.0/app-release.apk)
+✅Download APK: [app-release.apk](https://github.com/AzhamProdLive/Notes_App_Nothing/releases/download/releas3.2/app-release.apk)
 AntiVirus Scan : [Koodous.com](https://developer.koodous.com/apks/cb40dcbe5cf6ad5cd252c7a6a004259ab157cdb1d63fe2de48c90c96a3a261aa/)
 
 ## Features
