@@ -1,8 +1,7 @@
 import 'package:app_client/ui/theme/custom_colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 
 class TaskListScreen extends StatefulWidget {
   const TaskListScreen({super.key});
@@ -28,7 +27,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
   ) {
     return FloatingActionButton(
       shape: const CircleBorder(
-          side: BorderSide()),
+          side: BorderSide(width: 3, color: CustomColors.lightGrey)),
       backgroundColor: CustomColors.lightGrey,
       onPressed: () {
         _addTask(context);
@@ -36,7 +35,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
       tooltip: 'Add Task',
       child: const Icon(
         Icons.add,
-        color: CustomColors.backgroundColor,
+        color: CustomColors.whiteMain,
       ),
     );
   }
@@ -135,24 +134,28 @@ class _TaskListScreenState extends State<TaskListScreen> {
                                 side: BorderSide(
                               color: CustomColors.backgroundColor,
                             )),
-                            title: Row(children: [
-                              Text(tasks[index].task,
-                                  style: const TextStyle(
-                                      color: CustomColors.backgroundColor)),
-                              addTask(sublistNR, _taskWidget(
-                                task,
-                                context,
-                                ptId,
-                                sublistNR,
-                              ))
-
-                            ],),
+                            title: Text(tasks[index].task,
+                                style: const TextStyle(
+                                    color: CustomColors.backgroundColor)),
                             value: tasks[index].isDone == 1,
                             onChanged: (bool? value) {
                               _toggleTask(tasks[index]);
                             },
                           ),
                         )),
+                    Visibility(
+                      visible: (sublistNR < 2),
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: Container(
+                            child: _taskWidget(
+                          task,
+                          context,
+                          ptId,
+                          sublistNR,
+                        )),
+                      ),
+                    ),
                   ],
                 );
               },
@@ -173,12 +176,12 @@ class _TaskListScreenState extends State<TaskListScreen> {
     }
   }
 
-  Widget addTask(int sublistNR,Widget TaskW ){
-    if (sublistNR < 2){
-     return TaskW;}else{
+  Widget addTask(int sublistNR, Widget TaskW) {
+    if (sublistNR < 2) {
+      return TaskW;
+    } else {
       return Container();
     }
-
   }
 
   EdgeInsets taskPadding(int sublistNR) {
@@ -223,7 +226,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
     if (subtasks.isNotEmpty && task.isDone == 0) {
       return ExpansionTile(
           shape: const RoundedRectangleBorder(
-            side: BorderSide( width: 5),
+            side: BorderSide(width: 5),
             borderRadius: BorderRadius.all(Radius.circular((30))),
           ),
           backgroundColor: CustomColors.greyHint,
@@ -234,7 +237,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
           title: InkWell(
             splashColor: CustomColors.whiteMain,
             customBorder: RoundedRectangleBorder(
-              side: const BorderSide( width: 2),
+              side: const BorderSide(width: 2),
               borderRadius: BorderRadius.circular(
                 40,
               ),
@@ -289,7 +292,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
               borderRadius: const BorderRadius.all(Radius.circular(50))),
           child: InkWell(
             customBorder: RoundedRectangleBorder(
-              side: const BorderSide( width: 2),
+              side: const BorderSide(width: 2),
               borderRadius: BorderRadius.circular(
                 40,
               ),
@@ -309,6 +312,21 @@ class _TaskListScreenState extends State<TaskListScreen> {
                           const BorderRadius.all(Radius.circular(50))),
                   padding: const EdgeInsets.symmetric(horizontal: 0),
                   child: const Icon(Icons.add, color: CustomColors.lightGrey),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: CustomColors.whiteMain,
+                      border: Border.all(
+                        width: 2,
+                      ),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(50))),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: const Text(
+                    'Add Subtask',
+                    style:
+                        TextStyle(color: CustomColors.lightGrey, fontSize: 16),
+                  ),
                 ),
               ],
             ),
