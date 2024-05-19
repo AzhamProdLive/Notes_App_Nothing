@@ -15,7 +15,7 @@ class ShowNoteScreen extends StatelessWidget {
   ShowNoteScreen({super.key});
 
   final _titleController = TextEditingController();
-  final _bodyController = QuillController.basic();
+  final _bodyController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +26,13 @@ class ShowNoteScreen extends StatelessWidget {
 
     colorCubit.changeColor(note.color);
     _titleController.text = note.title;
-    _bodyController.document = Document.fromJson(json.decode(note.content));
+    _bodyController.text = note.content;
 
     return StreamBuilder<NotesColorState>(
         stream: colorCubit.stream,
         initialData: colorCubit.state,
         builder: (context, snapshot) {
           return Scaffold(
-            bottomSheet: QuillToolbarWidget(_bodyController),
             appBar: ShowNoteAppBar(
               onBackPressed: () async {
                 await saveChanges(context, cubit, colorCubit, note);
@@ -96,7 +95,18 @@ class ShowNoteScreen extends StatelessWidget {
                             fontFamily: "Nothing"),
                       ),
                       const SizedBox(height: 14),
-                      quillEditorPropertys(_bodyController)
+                      TextField(
+                        controller: _bodyController,
+                        textCapitalization: TextCapitalization.sentences,
+                        keyboardType: TextInputType.multiline,
+                        maxLines: null,
+                        decoration: const InputDecoration(
+                          fillColor: CustomColors.backgroundColor,
+                        ),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,),
+                      ),
                     ],
                   ),
                 ),
@@ -157,9 +167,7 @@ class ShowNoteScreen extends StatelessWidget {
     cubit.updateNote(Note(
         id: note.id,
         title: _titleController.text,
-        content: jsonEncode(
-          _bodyController.document.toDelta().toJson(),
-        ),
+        content: _bodyController.text,
         color: colorCubit.state.noteColor));
     Navigator.pop(context);
     return false;
