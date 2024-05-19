@@ -17,7 +17,12 @@ dependencies:
   sqlite3_flutter_libs: ^0.5.0
   path: ^1.8.2
   bloc: ^8.0.0
+  peerdart: ^0.5.4
+  battery: ^2.0.3
 
+dependency_overrides:
+  uuid: ^4.1.0
+  super_native_extensions: '0.8.5'
 
   awesome_notifications_core: ^0.9.0 # <~ always ensure to use the latest version
   awesome_notifications: any # <~ this version is managed by awesome_notifications_core package

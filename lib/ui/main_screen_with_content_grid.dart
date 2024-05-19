@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../blocs/notes_cubit.dart';
-import 'theme/custom_colors.dart';
-import '../database/tables.dart';
-import 'package:flutter_quill/flutter_quill.dart';
 import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
+import 'package:provider/provider.dart';
+
+import '../blocs/notes_cubit.dart';
+import '../database/tables.dart';
+import 'theme/custom_colors.dart';
 
 class MainScreenWithContentGridView extends StatelessWidget {
   const MainScreenWithContentGridView({
@@ -112,7 +114,9 @@ class MainScreenWithContentGridView extends StatelessWidget {
                                         fontFamily: "Nothing"),
                                   ),
                                   subtitle: Text(
-                                    notes[index].content,
+                                    Document.fromJson(
+                                            json.decode(notes[index].content))
+                                        .toPlainText(),
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 2,
                                     style: TextStyle(
@@ -129,7 +133,7 @@ class MainScreenWithContentGridView extends StatelessWidget {
 }
 
 Color textColor(Color indexColor) {
-  if (indexColor == const Color.fromRGBO(231,233,233, 1.0)) {
+  if (indexColor == const Color.fromRGBO(231, 233, 233, 1.0)) {
     return Colors.black54;
   } else {
     return Colors.white54;
@@ -137,7 +141,7 @@ Color textColor(Color indexColor) {
 }
 
 Color titleColor(Color indexColor) {
-  if (indexColor == const Color.fromRGBO(231,233,233, 1.0)) {
+  if (indexColor == const Color.fromRGBO(231, 233, 233, 1.0)) {
     return Colors.black;
   } else {
     return Colors.white;
@@ -154,7 +158,7 @@ Widget addNoteButton(BuildContext context) {
       elevation: 24,
       backgroundColor: CustomColors.lightGrey,
       shape: RoundedRectangleBorder(
-        side: const BorderSide( width: 0),
+        side: const BorderSide(width: 0),
         borderRadius: BorderRadius.circular(
           40,
         ),
