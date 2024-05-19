@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:app_client/blocs/notes_color_state.dart';
+import 'package:app_client/ui/quill/quill_edit_menu.dart';
 import 'package:app_client/ui/quill/quill_editor_propertys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
@@ -34,6 +35,7 @@ class ShowNoteScreen extends StatelessWidget {
         initialData: colorCubit.state,
         builder: (context, snapshot) {
           return Scaffold(
+            bottomSheet: QuillToolbarWidget(_bodyController),
             appBar: ShowNoteAppBar(
               onBackPressed: () async {
                 await saveChanges(context, cubit, colorCubit, note);
